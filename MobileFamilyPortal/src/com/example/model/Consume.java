@@ -8,34 +8,34 @@ public class Consume {
 	private int typeID;
 	private int dailyID;
 	
-	private int getConsumeID() {
+	public int getConsumeID() {
 		return consumeID;
 	}
-	private void setConsumeID(int consumeID) {
+	public void setConsumeID(int consumeID) {
 		this.consumeID = consumeID;
 	}
-	private String getDescription() {
+	public String getDescription() {
 		return description;
 	}
-	private void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
-	private double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	private void setAmount(double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	private int getTypeID() {
+	public int getTypeID() {
 		return typeID;
 	}
-	private void setTypeID(int typeID) {
+	public void setTypeID(int typeID) {
 		this.typeID = typeID;
 	}
-	private int getDailyID() {
+	public int getDailyID() {
 		return dailyID;
 	}
-	private void setDailyID(int dailyID) {
+	public void setDailyID(int dailyID) {
 		this.dailyID = dailyID;
 	}
 }

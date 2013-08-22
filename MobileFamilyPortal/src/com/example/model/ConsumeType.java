@@ -5,16 +5,16 @@ public class ConsumeType {
 	private int typeID;
 	private String description;
 	
-	private int getTypeID() {
+	public int getTypeID() {
 		return typeID;
 	}
-	private void setTypeID(int typeID) {
+	public void setTypeID(int typeID) {
 		this.typeID = typeID;
 	}
-	private String getDescription() {
+	public String getDescription() {
 		return description;
 	}
-	private void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 }

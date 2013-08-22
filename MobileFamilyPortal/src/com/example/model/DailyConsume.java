@@ -8,22 +8,22 @@ public class DailyConsume {
 	private double amount;
 	private Date date;
 	
-	private int getDailyID() {
+	public int getDailyID() {
 		return dailyID;
 	}
-	private void setDailyID(int dailyID) {
+	public void setDailyID(int dailyID) {
 		this.dailyID = dailyID;
 	}
-	private double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	private void setAmount(double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	private Date getDate() {
+	public Date getDate() {
 		return date;
 	}
-	private void setDate(Date date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }

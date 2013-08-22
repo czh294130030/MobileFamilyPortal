@@ -7,28 +7,28 @@ public class UserInfo {
 	private String userName;
 	private String password;
 	
-	private int getUserID() {
+	public int getUserID() {
 		return userID;
 	}
-	private void setUserID(int userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
-	private String getAccount() {
+	public String getAccount() {
 		return account;
 	}
-	private void setAccount(String account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
-	private String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
-	private void setUserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	private String getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	private void setPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
