@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <!-- 编号 -->
+    <TextView
+        android:id="@+id/userIDTextView"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+	<!-- 账号 -->
+    <TextView
+        android:id="@+id/accountTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+	<!-- 用户名 -->
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+</LinearLayout>

@@ -6,4 +6,6 @@ public class BaseField {
 	public static final int ADD=0;
 	public static final int EDIT=1;
 	public static final int DELETE=2;
+	public static final int OK=3;
+	public static final int Cancel=4;
 }

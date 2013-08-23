@@ -87,13 +87,8 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 
 	/*查询所有的数据 ，返回Cursor对象*/
 	public Cursor query() {
-		try {
-			//asc是升序desc为降序（默认为asc）
-			return db.query(TABLE_NAME, null, null, null, null, null, "userID ASC");
-		} catch (Exception e) {
-			return null;
-		}
+		/*结果集游标Cursor返回的数据中，一定要有一列名为“_id”*/
+		return db.rawQuery("SELECT userID as _id, account, userName, password FROM "+TABLE_NAME, null);
 	}
-
 }
 
