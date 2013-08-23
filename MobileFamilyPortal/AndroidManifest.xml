@@ -20,7 +20,7 @@
         </activity>
         <activity android:name="com.example.mobilefamilyportal.LoginActivity">
         </activity>
-        <activity android:name="UserInfoActivity">
+        <activity android:name="com.example.mobilefamilyportal.UserInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
