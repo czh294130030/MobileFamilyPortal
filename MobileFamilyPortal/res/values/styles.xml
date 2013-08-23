@@ -17,4 +17,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <!-- 标题样式 -->
+    <style name="TitleStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
