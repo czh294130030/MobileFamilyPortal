@@ -7,18 +7,18 @@
         android:id="@+id/userIDTextView"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textSize="26sp"/>
 	<!-- 账号 -->
     <TextView
         android:id="@+id/accountTextView"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textSize="26sp"/>
 	<!-- 用户名 -->
     <TextView
         android:id="@+id/userNameTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textSize="26sp"/>
 
 </LinearLayout>

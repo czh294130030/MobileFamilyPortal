@@ -8,10 +8,16 @@
 	<string name="add_item">ADD</string>
 	<string name="edit_item">EDIT</string>
 	<string name="delete_item">DELETE</string>
+	<string name="userinfo">USER INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
 	<string name="account">account</string>
-	<string name="user_name">name</string>
+	<string name="user_name">user name</string>
 	<string name="password">password</string>
+	<string name="warm_prompt">warm prompt</string>
+	<string name="account_required">please input account.</string>
+	<string name="username_required">please input user name.</string>
+	<string name="password_required">please input password.</string>
+	<string name="add_unsuccessfully">failed to add.</string>
 </resources>

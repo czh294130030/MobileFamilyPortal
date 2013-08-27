@@ -60,7 +60,7 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 		cv.put("userName", model.getUserName());
 		cv.put("password", model.getPassword());
 		long rowsaffected = db.insert(TABLE_NAME, null, cv);
-		Log.i(TAG, "ADD" + rowsaffected + "UserInfo");
+		Log.i(TAG, "ADD " + rowsaffected + " UserInfo");
 		return rowsaffected;
 	}
 
@@ -68,7 +68,7 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 	public int delete(int id) {
 		String[] whereArgs = { Integer.toString(id) };
 		int rowsaffected = db.delete(TABLE_NAME, "userID=?", whereArgs);
-		Log.i(TAG, "DELETE" + rowsaffected + "UserInfo");
+		Log.i(TAG, "DELETE " + rowsaffected + " UserInfo");
 		return rowsaffected;
 	}
 
@@ -81,12 +81,13 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 		String[] whereArgs = { Integer.toString(model.getUserID()) };
 		int rowsaffected = db.update(TABLE_NAME, cv, "userID=?",
 				whereArgs);
-		Log.i(TAG, "UPDATE" +rowsaffected + "UserInfo");
+		Log.i(TAG, "UPDATE " +rowsaffected + " UserInfo");
 		return rowsaffected;
 	}
 
 	/*查询所有的数据 ，返回Cursor对象*/
 	public Cursor query() {
+		Log.i(TAG, "SELECT UserInfo");
 		/*结果集游标Cursor返回的数据中，一定要有一列名为“_id”*/
 		return db.rawQuery("SELECT userID as _id, account, userName, password FROM "+TABLE_NAME, null);
 	}
