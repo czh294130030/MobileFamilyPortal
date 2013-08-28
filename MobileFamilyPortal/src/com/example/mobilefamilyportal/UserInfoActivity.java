@@ -10,6 +10,8 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class UserInfoActivity extends Activity {
@@ -22,6 +24,17 @@ public class UserInfoActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_userinfo);
 	    userInfoListView=(ListView)findViewById(R.id.userInfoListView);
+	    userInfoListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+	    	public void onItemClick(AdapterView<?> parent,View view,int position,long arg3) { 
+	    		int id=Integer.parseInt(String.valueOf(parent.getItemIdAtPosition(position)));
+	    		Intent intent=new Intent(UserInfoActivity.this, UserInfoActivityOP.class);
+	    		Bundle bundle=new Bundle();
+	    		bundle.putInt("op", BaseField.EDIT);
+	    		bundle.putInt("id", id);
+	    		intent.putExtras(bundle);
+	    		startActivityForResult(intent, BaseField.EDIT_USERINFO);
+	    	}
+		});
 	    bind();
 	}
 	
@@ -44,8 +57,6 @@ public class UserInfoActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
 		menu.add(0, BaseField.ADD, 0, R.string.add_item);
-		menu.add(0, BaseField.EDIT, 0, R.string.edit_item);
-		menu.add(0, BaseField.DELETE, 0, R.string.delete_item);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -55,11 +66,10 @@ public class UserInfoActivity extends Activity {
 		switch (item.getItemId()) {
 		case BaseField.ADD:
 			Intent intent=new Intent(UserInfoActivity.this, UserInfoActivityOP.class);
+			Bundle bundle=new Bundle();
+    		bundle.putInt("op", BaseField.ADD);
+    		intent.putExtras(bundle);
 			startActivityForResult(intent, BaseField.ADD_USERINFO);
-			break;
-		case BaseField.EDIT:
-			break;
-		case BaseField.DELETE:
 			break;
 		default:
 			break;

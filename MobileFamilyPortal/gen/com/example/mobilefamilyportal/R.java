@@ -31,7 +31,7 @@ public final class R {
         public static final int textView1=0x7f080000;
         public static final int textView2=0x7f080004;
         public static final int textView3=0x7f080006;
-        public static final int textView4=0x7f080002;
+        public static final int titleTextView=0x7f080002;
         public static final int userIDTextView=0x7f080008;
         public static final int userInfoListView=0x7f080001;
         public static final int userNameTextView=0x7f08000a;
@@ -48,25 +48,26 @@ public final class R {
         public static final int main=0x7f070000;
     }
     public static final class string {
-        public static final int account=0x7f05000b;
-        public static final int account_required=0x7f05000f;
+        public static final int account=0x7f05000c;
+        public static final int account_required=0x7f050010;
         public static final int action_settings=0x7f050001;
         public static final int add_item=0x7f050004;
-        public static final int add_unsuccessfully=0x7f050012;
+        public static final int add_unsuccessfully=0x7f050013;
         public static final int add_userinfo=0x7f050008;
         public static final int app_name=0x7f050000;
-        public static final int cancel=0x7f05000a;
+        public static final int cancel=0x7f05000b;
         public static final int delete_item=0x7f050006;
         public static final int edit_item=0x7f050005;
+        public static final int edit_userinfo=0x7f050009;
         public static final int hello_world=0x7f050002;
-        public static final int ok=0x7f050009;
-        public static final int password=0x7f05000d;
-        public static final int password_required=0x7f050011;
+        public static final int ok=0x7f05000a;
+        public static final int password=0x7f05000e;
+        public static final int password_required=0x7f050012;
         public static final int user_info=0x7f050003;
-        public static final int user_name=0x7f05000c;
+        public static final int user_name=0x7f05000d;
         public static final int userinfo=0x7f050007;
-        public static final int username_required=0x7f050010;
-        public static final int warm_prompt=0x7f05000e;
+        public static final int username_required=0x7f050011;
+        public static final int warm_prompt=0x7f05000f;
     }
     public static final class style {
         /** 

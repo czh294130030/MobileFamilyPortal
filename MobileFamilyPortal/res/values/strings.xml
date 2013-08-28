@@ -10,6 +10,7 @@
 	<string name="delete_item">DELETE</string>
 	<string name="userinfo">USER INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
+	<string name="edit_userinfo">EDIT USER INFORMATION</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
 	<string name="account">account</string>
