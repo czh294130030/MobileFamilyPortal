@@ -84,6 +84,10 @@ public class UserInfoActivity extends Activity {
     	if(requestCode==BaseField.ADD_USERINFO&&resultCode==BaseField.ADD_SUCCESSFULLY){
     		bind();
     	}
+    	/*修改用户信息成功*/
+    	if(requestCode==BaseField.EDIT_USERINFO&&resultCode==BaseField.UPDATE_SUCCESSFULLY){
+    		bind();
+    	}
     }
     
 	@Override  

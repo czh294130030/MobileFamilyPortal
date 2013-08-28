@@ -21,4 +21,5 @@
 	<string name="username_required">please input user name.</string>
 	<string name="password_required">please input password.</string>
 	<string name="add_unsuccessfully">failed to add.</string>
+	<string name="update_unsuccessfully">failed to update.</string>
 </resources>
