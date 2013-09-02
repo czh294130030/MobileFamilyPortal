@@ -8,6 +8,7 @@ import com.example.model.UserInfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -69,6 +70,16 @@ public class UserInfoActivityOP extends Activity {
 		}
 		return true;
 	}
+	/*关闭Activity*/ 
+	@Override   
+    public boolean onKeyDown(int keyCode, KeyEvent event){  
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+        	Intent cancelIntent=new Intent();
+			setResult(BaseField.ADD_CANCEL, cancelIntent);
+            this.finish();  
+        }  
+        return super.onKeyDown(keyCode, event);  
+    }
 	/*根据id将表单用户信息修改到数据库*/
 	private void updateUserInfo(int _id){
 		UserInfo model=getUserInfoFromInput();
