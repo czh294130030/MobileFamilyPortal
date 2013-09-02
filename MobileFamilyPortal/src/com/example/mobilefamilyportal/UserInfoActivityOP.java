@@ -82,7 +82,7 @@ public class UserInfoActivityOP extends Activity {
 				setResult(BaseField.UPDATE_SUCCESSFULLY, intent);
 				finish();
 			}else{
-				BaseMethod.ShowInformation(this, R.string.warm_prompt, R.string.update_unsuccessfully);
+				BaseMethod.showInformation(this, R.string.warm_prompt, R.string.update_unsuccessfully);
 			}
 		}
 		
@@ -99,7 +99,7 @@ public class UserInfoActivityOP extends Activity {
 				setResult(BaseField.ADD_SUCCESSFULLY, intent);
 				finish();
 			}else{
-				BaseMethod.ShowInformation(this, R.string.warm_prompt, R.string.add_unsuccessfully);
+				BaseMethod.showInformation(this, R.string.warm_prompt, R.string.add_unsuccessfully);
 			}
 		}
 	}
@@ -142,17 +142,17 @@ public class UserInfoActivityOP extends Activity {
 		String userName=usernameEditText.getText().toString().trim();
 		String password=passwordEditText.getText().toString().trim();
 		if(account.equals("")){
-			BaseMethod.ShowInformation(this, R.string.warm_prompt, R.string.account_required);
+			BaseMethod.showInformation(this, R.string.warm_prompt, R.string.account_required);
 			accountEditText.requestFocus();
 			return false;
 		}
 		if(userName.equals("")){
-			BaseMethod.ShowInformation(this, R.string.warm_prompt, R.string.username_required);
+			BaseMethod.showInformation(this, R.string.warm_prompt, R.string.username_required);
 			usernameEditText.requestFocus();
 			return false;
 		}
 		if(password.equals("")){
-			BaseMethod.ShowInformation(this, R.string.warm_prompt, R.string.password_required);
+			BaseMethod.showInformation(this, R.string.warm_prompt, R.string.password_required);
 			passwordEditText.requestFocus();
 			return false;
 		}

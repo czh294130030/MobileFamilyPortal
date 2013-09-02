@@ -22,4 +22,6 @@
 	<string name="password_required">please input password.</string>
 	<string name="add_unsuccessfully">failed to add.</string>
 	<string name="update_unsuccessfully">failed to update.</string>
+	<string name="delete_unsuccessfully">failed to delete.</string>
+	<string name="confirm_to_delete">confirm to delete user info?</string>
 </resources>

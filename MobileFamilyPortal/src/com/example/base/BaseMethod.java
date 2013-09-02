@@ -5,11 +5,12 @@ import com.example.mobilefamilyportal.R;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 
 public class BaseMethod {
 	
 	/*显示提示信息*/
-	public static void ShowInformation(Context context, int title, int message){
+	public static void showInformation(Context context, int title, int message){
 		new AlertDialog.Builder(context)
 			.setTitle(title)
 			.setIcon(android.R.drawable.ic_dialog_info)
