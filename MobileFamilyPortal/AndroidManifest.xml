@@ -16,16 +16,15 @@
         <activity
             android:name="com.example.mobilefamilyportal.MainActivity"
             android:label="@string/app_name" >
-            
-        </activity>
-        <activity android:name="com.example.mobilefamilyportal.LoginActivity">
-        </activity>
-        <activity android:name="com.example.mobilefamilyportal.UserInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.example.mobilefamilyportal.LoginActivity">
+        </activity>
+        <activity android:name="com.example.mobilefamilyportal.UserInfoActivity">
         </activity>
         <activity android:name="com.example.mobilefamilyportal.UserInfoActivityOP"></activity>
     </application>
