@@ -21,21 +21,39 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int add=0x7f020000;
+        public static final int alert=0x7f020001;
+        public static final int calender=0x7f020002;
+        public static final int card=0x7f020003;
+        public static final int create=0x7f020004;
+        public static final int dailyconsume=0x7f020005;
+        public static final int delete=0x7f020006;
+        public static final int edit=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int info=0x7f020009;
+        public static final int login=0x7f02000a;
+        public static final int minus=0x7f02000b;
+        public static final int others=0x7f02000c;
+        public static final int userinfo=0x7f02000d;
     }
     public static final class id {
-        public static final int accountEditText=0x7f080003;
-        public static final int accountTextView=0x7f080009;
-        public static final int action_settings=0x7f08000b;
-        public static final int passwordEditText=0x7f080007;
-        public static final int textView1=0x7f080000;
-        public static final int textView2=0x7f080004;
-        public static final int textView3=0x7f080006;
-        public static final int titleTextView=0x7f080002;
-        public static final int userIDTextView=0x7f080008;
-        public static final int userInfoListView=0x7f080001;
-        public static final int userNameTextView=0x7f08000a;
-        public static final int usernameEditText=0x7f080005;
+        public static final int accountEditText=0x7f080008;
+        public static final int accountTextView=0x7f08000e;
+        public static final int action_settings=0x7f080010;
+        public static final int imageButton1=0x7f080000;
+        public static final int imageButton2=0x7f080001;
+        public static final int imageButton3=0x7f080002;
+        public static final int imageButton4=0x7f080003;
+        public static final int imageButton5=0x7f080004;
+        public static final int passwordEditText=0x7f08000c;
+        public static final int textView1=0x7f080005;
+        public static final int textView2=0x7f080009;
+        public static final int textView3=0x7f08000b;
+        public static final int titleTextView=0x7f080007;
+        public static final int userIDTextView=0x7f08000d;
+        public static final int userInfoListView=0x7f080006;
+        public static final int userNameTextView=0x7f08000f;
+        public static final int usernameEditText=0x7f08000a;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -99,6 +117,9 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        /**  主页菜单 
+         */
+        public static final int MenuStyle=0x7f060003;
         /**  标题样式 
          */
         public static final int TitleStyle=0x7f060002;

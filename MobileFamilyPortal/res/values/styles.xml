@@ -23,4 +23,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:padding">10dp</item>
     </style>
+    <!-- 主页菜单 -->
+    <style name="MenuStyle">
+        <item name="android:background">#00000000</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
 </resources>
