@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 	private OnClickListener onMyClickListener=new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Toast.makeText(MainActivity.this, R.string.module_build, Toast.LENGTH_LONG)
+			Toast.makeText(MainActivity.this, R.string.module_build, Toast.LENGTH_SHORT)
 			.show();
 		}
 	};
