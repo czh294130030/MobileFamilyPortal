@@ -3,6 +3,7 @@ package com.example.mobilefamilyportal;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
@@ -33,5 +34,13 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	/*¹Ø±ÕActivity*/ 
+	@Override   
+    public boolean onKeyDown(int keyCode, KeyEvent event){  
+        if(keyCode==KeyEvent.KEYCODE_BACK){  
+            this.finish();  
+        }  
+        return super.onKeyDown(keyCode, event);  
+    }
 
 }
