@@ -22,7 +22,7 @@
             android:src="@drawable/login" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/userInfoImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"

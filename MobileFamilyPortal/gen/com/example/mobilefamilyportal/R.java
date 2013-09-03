@@ -42,7 +42,6 @@ public final class R {
         public static final int action_settings=0x7f080010;
         public static final int imageButton1=0x7f080000;
         public static final int imageButton2=0x7f080001;
-        public static final int imageButton3=0x7f080002;
         public static final int imageButton4=0x7f080003;
         public static final int imageButton5=0x7f080004;
         public static final int passwordEditText=0x7f08000c;
@@ -51,6 +50,7 @@ public final class R {
         public static final int textView3=0x7f08000b;
         public static final int titleTextView=0x7f080007;
         public static final int userIDTextView=0x7f08000d;
+        public static final int userInfoImageButton=0x7f080002;
         public static final int userInfoListView=0x7f080006;
         public static final int userNameTextView=0x7f08000f;
         public static final int usernameEditText=0x7f08000a;
