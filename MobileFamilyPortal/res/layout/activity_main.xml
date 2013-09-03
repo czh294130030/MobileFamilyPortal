@@ -3,37 +3,44 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        style="@style/TitleStyle" />
+	
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/dailyConsumeImageButton"
             style="@style/MenuStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/dailyconsume" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/loginImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/login" />
 
         <ImageButton
             android:id="@+id/userInfoImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/user" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/bankImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/bank" />
 
     </LinearLayout>
 
@@ -42,11 +49,11 @@
         android:layout_height="wrap_content" >
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/othersImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/others" />
 
     </LinearLayout>
   

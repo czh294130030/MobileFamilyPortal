@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">FAMILY PORTAL</string>
+    <string name="welcome">Welcome to chad\'s family portal.</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="user_info">User Information</string>
@@ -24,4 +24,5 @@
 	<string name="update_unsuccessfully">failed to update.</string>
 	<string name="delete_unsuccessfully">failed to delete.</string>
 	<string name="confirm_to_delete">confirm to delete user info?</string>
+	<string name="module_build">this module is being build.</string>
 </resources>
