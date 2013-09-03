@@ -45,8 +45,9 @@ public class UserInfoActivityOP extends Activity {
 	/*添加菜单*/
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
-		menu.add(0, BaseField.OK, 0, R.string.ok);
-		menu.add(0, BaseField.CANCEL, 0, R.string.cancel);
+		BaseMethod.setIconEnable(menu, true);//解决android 4.0显示图片
+		menu.add(0, BaseField.OK, 0, R.string.ok).setIcon(R.drawable.menu_ok);
+		menu.add(0, BaseField.CANCEL, 0, R.string.cancel).setIcon(R.drawable.menu_cancel);
 		return super.onCreateOptionsMenu(menu);
 	}
 	/*菜单触发事件*/

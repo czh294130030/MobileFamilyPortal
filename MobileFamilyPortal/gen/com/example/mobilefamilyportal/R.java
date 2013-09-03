@@ -28,12 +28,18 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int bank=0x7f020000;
-        public static final int dailyconsume=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int login=0x7f020003;
-        public static final int others=0x7f020004;
-        public static final int user=0x7f020005;
+        public static final int alert_info=0x7f020000;
+        public static final int bank=0x7f020001;
+        public static final int dailyconsume=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int login=0x7f020004;
+        public static final int menu_add=0x7f020005;
+        public static final int menu_cancel=0x7f020006;
+        public static final int menu_delete=0x7f020007;
+        public static final int menu_edit=0x7f020008;
+        public static final int menu_ok=0x7f020009;
+        public static final int settings=0x7f02000a;
+        public static final int user=0x7f02000b;
     }
     public static final class id {
         public static final int accountEditText=0x7f090008;
@@ -42,8 +48,8 @@ public final class R {
         public static final int bankImageButton=0x7f090004;
         public static final int dailyConsumeImageButton=0x7f090001;
         public static final int loginImageButton=0x7f090002;
-        public static final int othersImageButton=0x7f090005;
         public static final int passwordEditText=0x7f09000c;
+        public static final int settingsImageButton=0x7f090005;
         public static final int textView1=0x7f090000;
         public static final int textView2=0x7f090009;
         public static final int textView3=0x7f09000b;

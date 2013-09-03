@@ -18,7 +18,7 @@ public class MainActivity extends Activity {
 	private ImageButton userInfoImageButton=null;
 	private ImageButton loginImageButton=null;
 	private ImageButton bankImageButton=null;
-	private ImageButton othersImageButton=null;
+	private ImageButton settingsImageButton=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,10 +47,10 @@ public class MainActivity extends Activity {
 		bankImageButton=(ImageButton)findViewById(R.id.bankImageButton);
 		bankImageButton.setOnTouchListener(onMyOnTouchListener);
 		bankImageButton.setOnClickListener(onMyClickListener);
-		/*其他*/
-		othersImageButton=(ImageButton)findViewById(R.id.othersImageButton);
-		othersImageButton.setOnTouchListener(onMyOnTouchListener);
-		othersImageButton.setOnClickListener(onMyClickListener);
+		/*设置*/
+		settingsImageButton=(ImageButton)findViewById(R.id.settingsImageButton);
+		settingsImageButton.setOnTouchListener(onMyOnTouchListener);
+		settingsImageButton.setOnClickListener(onMyClickListener);
 	}
 	/*显示模块正在建设*/
 	private OnClickListener onMyClickListener=new OnClickListener() {

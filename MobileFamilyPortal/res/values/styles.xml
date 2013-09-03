@@ -26,7 +26,7 @@
     <!-- 主页菜单 -->
     <style name="MenuStyle">
         <item name="android:background">@color/transparent</item>
-        <item name="android:padding">1dp</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 </resources>

@@ -84,9 +84,10 @@ public class UserInfoActivity extends Activity {
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) { 
 		Log.i(TAG, "onCreateOptionsMenu");
-		menu.add(0, BaseField.ADD, 0, R.string.add_item);
-		menu.add(0, BaseField.EDIT, 1, R.string.edit_item);
-		menu.add(0, BaseField.DELETE, 2, R.string.delete_item);
+		BaseMethod.setIconEnable(menu, true);//解决android 4.0显示图片
+		menu.add(0, BaseField.ADD, 0, R.string.add_item).setIcon(R.drawable.menu_add);
+		menu.add(0, BaseField.EDIT, 1, R.string.edit_item).setIcon(R.drawable.menu_edit);
+		menu.add(0, BaseField.DELETE, 2, R.string.delete_item).setIcon(R.drawable.menu_delete);
 		return true;
 	}
 	/* 1. 当手机(Emulator)sdk版本>=11（如我的手机Android Version是4.1.1, Build.VERSION.SDK_INT是16） 
@@ -149,7 +150,7 @@ public class UserInfoActivity extends Activity {
 		final int userID=_id;
 		new AlertDialog.Builder(this)
 		.setTitle(R.string.warm_prompt)
-		.setIcon(android.R.drawable.ic_dialog_info)
+		.setIcon(R.drawable.alert_info)
 		.setMessage(R.string.confirm_to_delete)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 			
