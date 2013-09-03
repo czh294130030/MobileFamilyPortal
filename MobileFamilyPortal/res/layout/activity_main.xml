@@ -12,28 +12,28 @@
             style="@style/MenuStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dailyconsume" />
+            android:src="@drawable/ic_launcher" />
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/login" />
+            android:src="@drawable/ic_launcher" />
 
         <ImageButton
             android:id="@+id/userInfoImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/userinfo" />
+            android:src="@drawable/ic_launcher" />
 
         <ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/card" />
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/MenuStyle"
-            android:src="@drawable/others" />
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
   
