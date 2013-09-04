@@ -12,17 +12,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-		android:paddingLeft="5dp"
-		android:paddingRight="5dp">
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" >
-            <requestFocus />
-        </EditText>        
+        android:padding="8dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:hint="@string/search_keyword" >
+                <requestFocus />
+            </EditText>
+            <ImageButton
+                android:id="@+id/clearImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@color/transparent"
+                android:visibility="invisible"
+                android:src="@drawable/clear" />
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +53,7 @@
             android:width="150dp"
             android:textSize="20sp"
             android:layout_marginLeft="8dp"
-            android:textColor="@color/gray"
+            android:textColor="@color/button_mouseover_color"
             android:text="@string/account" />
 
         <TextView
@@ -47,7 +61,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/gray"
+            android:textColor="@color/button_mouseover_color"
             android:text="@string/user_name" />
     </LinearLayout>
     <View 

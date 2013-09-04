@@ -20,6 +20,7 @@
 	<string name="account_required">Please input account.</string>
 	<string name="username_required">Please input user name.</string>
 	<string name="password_required">Please input password.</string>
+	<string name="search_keyword">Please input search keyword.</string>
 	<string name="add_unsuccessfully">Failed to add.</string>
 	<string name="update_unsuccessfully">Failed to update.</string>
 	<string name="delete_unsuccessfully">Failed to delete.</string>

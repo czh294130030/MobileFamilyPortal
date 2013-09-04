@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class UserInfoActivity extends Activity {
@@ -33,6 +34,7 @@ public class UserInfoActivity extends Activity {
 	private ListView userInfoListView=null;
 	private SimpleCursorAdapter adapter=null;
 	private EditText searchEditText=null;
+	private ImageButton clearImageButton=null;
 	private Cursor cursor=null;
 	private String TAG="Menu";
 	/*存放修改或删除UserInfo的编号*/
@@ -41,8 +43,17 @@ public class UserInfoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_userinfo);
+	    /*清空搜索条件*/
+	    clearImageButton=(ImageButton)findViewById(R.id.clearImageButton);
+	    clearImageButton.setOnClickListener(new ImageButton.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				searchEditText.setText("");
+			}
+		});
+	    /*修改EditText时重新绑定数据和显示（隐藏）清空按钮*/
 	    searchEditText=(EditText)findViewById(R.id.searchEditText);
-	   searchEditText.addTextChangedListener(new TextWatcher() {
+	    searchEditText.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				bind();
@@ -51,16 +62,18 @@ public class UserInfoActivity extends Activity {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
-				
 			}
-			
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				
+				String searchString=searchEditText.getText().toString().trim();
+				if(searchString.equals("")){
+					clearImageButton.setVisibility(View.INVISIBLE);
+				}else{
+					clearImageButton.setVisibility(View.VISIBLE);
+				}
 			}
 		});
+	    /*单击ListView触发事件*/
 	    userInfoListView=(ListView)findViewById(R.id.userInfoListView);
 	    userInfoListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
 	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
