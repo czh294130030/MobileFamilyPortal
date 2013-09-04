@@ -89,6 +89,7 @@ public final class R {
         public static final int ok=0x7f06000b;
         public static final int password=0x7f06000f;
         public static final int password_required=0x7f060013;
+        public static final int unsave_changes=0x7f060019;
         public static final int update_unsuccessfully=0x7f060015;
         public static final int user_info=0x7f060004;
         public static final int user_name=0x7f06000e;

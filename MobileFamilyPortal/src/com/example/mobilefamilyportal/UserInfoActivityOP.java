@@ -6,6 +6,8 @@ import com.example.dal.UserInfoDAL;
 import com.example.model.UserInfo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -62,9 +64,7 @@ public class UserInfoActivityOP extends Activity {
 			}
 			break;
 		case BaseField.CANCEL:
-			Intent cancelIntent=new Intent();
-			setResult(BaseField.ADD_CANCEL, cancelIntent);
-			finish();
+			unsaveChanges();
 			break;
 		default:
 			break;
@@ -75,12 +75,26 @@ public class UserInfoActivityOP extends Activity {
 	@Override   
     public boolean onKeyDown(int keyCode, KeyEvent event){  
         if(keyCode==KeyEvent.KEYCODE_BACK){
-        	Intent cancelIntent=new Intent();
-			setResult(BaseField.ADD_CANCEL, cancelIntent);
-            this.finish();  
+        	unsaveChanges();
         }  
         return super.onKeyDown(keyCode, event);  
     }
+	/*不保存跳转到用户信息页面*/
+	private void unsaveChanges(){
+		new AlertDialog.Builder(this)
+    	.setTitle(R.string.warm_prompt)
+    	.setIcon(R.drawable.alert_info)
+    	.setMessage(R.string.unsave_changes)
+    	.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent cancelIntent=new Intent();
+				setResult(BaseField.ADD_CANCEL, cancelIntent);
+	            finish();  
+			}
+		}).setNegativeButton(R.string.cancel, null)
+		.show();
+	}
 	/*根据id将表单用户信息修改到数据库*/
 	private void updateUserInfo(int _id){
 		UserInfo model=getUserInfoFromInput();

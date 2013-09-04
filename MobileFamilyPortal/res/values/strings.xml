@@ -25,4 +25,5 @@
 	<string name="delete_unsuccessfully">Failed to delete.</string>
 	<string name="confirm_to_delete">Confirm to delete user info?</string>
 	<string name="module_build">This module is being build.</string>
+	<string name="unsave_changes">Unsaved changes will be lost.</string>
 </resources>
