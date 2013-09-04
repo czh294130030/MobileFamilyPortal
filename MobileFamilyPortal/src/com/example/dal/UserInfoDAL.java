@@ -1,6 +1,7 @@
 package com.example.dal;
 
 import com.example.base.BaseField;
+import com.example.mobilefamilyportal.R.string;
 import com.example.model.UserInfo;
 import android.content.ContentValues;
 import android.content.Context;
@@ -86,10 +87,14 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 	}
 
 	/*查询所有的数据 ，返回Cursor对象*/
-	public Cursor query() {
+	public Cursor query(String whereString) {
 		Log.i(TAG, "SELECT UserInfo");
 		/*结果集游标Cursor返回的数据中，一定要有一列名为“_id”*/
-		return db.rawQuery("SELECT userID as _id, account, userName, password FROM "+TABLE_NAME, null);
+		String sqlString="SELECT userID as _id, account, userName, password FROM "+TABLE_NAME; 
+		if(!whereString.equals("")){
+			sqlString+=" "+whereString;
+		}
+		return db.rawQuery(sqlString, null);
 	}
 	
 	/*根据id获取用户信息*/

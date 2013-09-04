@@ -13,12 +13,15 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class UserInfoActivity extends Activity {
@@ -29,6 +32,7 @@ public class UserInfoActivity extends Activity {
 	private boolean isAdd=true;
 	private ListView userInfoListView=null;
 	private SimpleCursorAdapter adapter=null;
+	private EditText searchEditText=null;
 	private Cursor cursor=null;
 	private String TAG="Menu";
 	/*存放修改或删除UserInfo的编号*/
@@ -37,6 +41,26 @@ public class UserInfoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_userinfo);
+	    searchEditText=(EditText)findViewById(R.id.searchEditText);
+	   searchEditText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				bind();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	    userInfoListView=(ListView)findViewById(R.id.userInfoListView);
 	    userInfoListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
 	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
@@ -58,14 +82,19 @@ public class UserInfoActivity extends Activity {
 	/*绑定数据*/
 	@SuppressWarnings("deprecation")
 	private void bind(){
+		String searchString=searchEditText.getText().toString().trim();
+		String whereString="";
+		if(!searchString.equals("")){
+			whereString="where account like'%"+searchString+"%' or userName like '%"+searchString+"%'";
+		}
 		UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-		cursor=userInfoDAL.query();
+		cursor=userInfoDAL.query(whereString);
     	adapter=new SimpleCursorAdapter(  
                 this,   
                 R.layout.list_userinfo,  
                 cursor,   
-                new String[]{"_id", "account", "userName"},  
-                new int[]{R.id.userIDTextView, R.id.accountTextView, R.id.userNameTextView});  
+                new String[]{"account", "userName"},  
+                new int[]{R.id.accountTextView, R.id.userNameTextView});  
 	    userInfoListView.setAdapter(adapter);
 	    userInfoDAL.close();
 	}

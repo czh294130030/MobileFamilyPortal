@@ -11,8 +11,10 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int black=0x7f040005;
         public static final int blue=0x7f040003;
         public static final int button_mouseover_color=0x7f040004;
+        public static final int gray=0x7f040006;
         public static final int green=0x7f040002;
         public static final int red=0x7f040001;
         public static final int transparent=0x7f040000;
@@ -42,23 +44,23 @@ public final class R {
         public static final int user=0x7f02000b;
     }
     public static final class id {
-        public static final int accountEditText=0x7f090008;
+        public static final int accountEditText=0x7f09000b;
         public static final int accountTextView=0x7f09000e;
         public static final int action_settings=0x7f090010;
         public static final int bankImageButton=0x7f090004;
         public static final int dailyConsumeImageButton=0x7f090001;
         public static final int loginImageButton=0x7f090002;
-        public static final int passwordEditText=0x7f09000c;
+        public static final int passwordEditText=0x7f09000d;
+        public static final int searchEditText=0x7f090006;
         public static final int settingsImageButton=0x7f090005;
         public static final int textView1=0x7f090000;
-        public static final int textView2=0x7f090009;
-        public static final int textView3=0x7f09000b;
-        public static final int titleTextView=0x7f090007;
-        public static final int userIDTextView=0x7f09000d;
+        public static final int textView2=0x7f090007;
+        public static final int textView3=0x7f090008;
+        public static final int titleTextView=0x7f09000a;
         public static final int userInfoImageButton=0x7f090003;
-        public static final int userInfoListView=0x7f090006;
+        public static final int userInfoListView=0x7f090009;
         public static final int userNameTextView=0x7f09000f;
-        public static final int usernameEditText=0x7f09000a;
+        public static final int usernameEditText=0x7f09000c;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
