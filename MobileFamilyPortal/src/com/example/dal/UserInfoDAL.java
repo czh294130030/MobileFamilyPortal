@@ -1,7 +1,7 @@
 package com.example.dal;
 
 import com.example.base.BaseField;
-import com.example.mobilefamilyportal.R.string;
+import com.example.base.BaseMethod;
 import com.example.model.UserInfo;
 import android.content.ContentValues;
 import android.content.Context;
@@ -25,8 +25,12 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		Log.i(TAG, "CREATE TABLE UserInfo");
 		String sql = "CREATE TABLE "+TABLE_NAME
-				+ "(userID INTEGER PRIMARY KEY AUTOINCREMENT,account NVARCHAR(50),userName NVARCHAR(50),password NVARCHAR(50))";
+				+ "(userID INTEGER PRIMARY KEY AUTOINCREMENT,account NVARCHAR(50),userName NVARCHAR(50),password NVARCHAR(50));";
 		db.execSQL(sql);
+		/*内置数据*/
+		UserInfo itemInfo=BaseMethod.getAdminInfo();
+		String sqlInsert="INSERT INTO "+TABLE_NAME+" VALUES(null,'"+itemInfo.getAccount()+"','"+itemInfo.getUserName()+"','"+itemInfo.getPassword()+"');";
+		db.execSQL(sqlInsert);
 	}
 
 	/*更新数据库*/

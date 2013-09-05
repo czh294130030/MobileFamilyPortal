@@ -3,6 +3,8 @@ package com.example.base;
 
 import java.lang.reflect.Method;
 import com.example.mobilefamilyportal.R;
+import com.example.model.UserInfo;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.Menu;
@@ -35,4 +37,12 @@ public class BaseMethod {
             e.printStackTrace();    
         }    
     } 
+    /*获取管理员内置数据*/
+    public static UserInfo getAdminInfo(){
+    	UserInfo itemInfo=new UserInfo();
+    	itemInfo.setAccount("admin");
+    	itemInfo.setUserName("admin.cao");
+    	itemInfo.setPassword("123456");
+    	return itemInfo;
+    }
 }

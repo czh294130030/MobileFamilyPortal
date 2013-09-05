@@ -77,15 +77,17 @@ public class UserInfoActivity extends Activity {
 	    userInfoListView=(ListView)findViewById(R.id.userInfoListView);
 	    userInfoListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
 	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
-	    		/*显示修改、删除菜单*/
-	    		isAdd=false;
 	    		/*获取操作UserInfo的编号*/
 	    		id=Integer.parseInt(String.valueOf(parent.getItemIdAtPosition(position)));
-	    		if (Build.VERSION.SDK_INT >= 11&&isFirstTrigger) { 
-	    			menuRefresh();
-	    			isFirstTrigger=false;
+	    		if(id!=1){
+		    		/*显示修改、删除菜单*/
+		    		isAdd=false;
+		    		if (Build.VERSION.SDK_INT >= 11&&isFirstTrigger) { 
+		    			menuRefresh();
+		    			isFirstTrigger=false;
+		    		}
+		    		openOptionsMenu();
 	    		}
-	    		openOptionsMenu();
 	    		return true;
 	    	}
 		});

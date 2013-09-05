@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 内置admin -->
+    <string-array name="admin_info">
+        <item name="admin_account">admin</item>
+        <item name="admin_username">admin.cao</item>
+        <item name="admin_password">123456</item>
+    </string-array>
+    <!-- 消费类型 -->
+    <string-array name="daily_consume_type">
+        <item>food</item>
+        <item>clothing</item>
+        <item>shelter</item>
+        <item>transportation</item>
+        <item>others</item>
+    </string-array>
+</resources>
