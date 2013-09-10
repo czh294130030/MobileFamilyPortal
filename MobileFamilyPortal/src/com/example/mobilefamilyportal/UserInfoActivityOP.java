@@ -98,7 +98,14 @@ public class UserInfoActivityOP extends Activity {
 	/*根据id将表单用户信息修改到数据库*/
 	private void updateUserInfo(int _id){
 		UserInfo model=getUserInfoFromInput();
-		if(model!=null){
+		if(model!=null){//获取用户输入的信息
+			UserInfo item=getUserInfo(_id);//根据id获取用户信息
+			if(!item.getAccount().equals(model.getAccount())){//用户在修改时修改了账户
+				if(getUserInfo(model.getAccount())!=null){//用户输入的账户在数据库中已经存在
+					BaseMethod.showInformation(this, R.string.warm_prompt, R.string.account_has_been_used);
+					return;
+				}
+			}
 			model.setUserID(_id);
 			UserInfoDAL userInfoDAL=new UserInfoDAL(this);
 			int result=userInfoDAL.update(model);
@@ -111,12 +118,15 @@ public class UserInfoActivityOP extends Activity {
 				BaseMethod.showInformation(this, R.string.warm_prompt, R.string.update_unsuccessfully);
 			}
 		}
-		
 	}
 	/*将表单用户信息添加到数据库*/
 	private void addUserInfo(){
 		UserInfo model=getUserInfoFromInput();
-		if(model!=null){
+		if(model!=null){//获取用户输入的信息
+			if(getUserInfo(model.getAccount())!=null){//用户输入的账户在数据库中存在
+				BaseMethod.showInformation(this, R.string.warm_prompt, R.string.account_has_been_used);
+				return;
+			}
 			UserInfoDAL userInfoDAL=new UserInfoDAL(this);
 			long result =userInfoDAL.add(model);
 			userInfoDAL.close();
@@ -141,9 +151,19 @@ public class UserInfoActivityOP extends Activity {
 	}
 	/*根据id从数据库中获取用户信息*/
 	private UserInfo getUserInfo(int _id){
-		UserInfo model=new UserInfo();
+		UserInfo item=new UserInfo();
+		item.setUserID(_id);
 		UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-		model=userInfoDAL.queryUserInfoByID(_id);
+		UserInfo model=userInfoDAL.queryUserInfo(item);
+		userInfoDAL.close();
+		return model;
+	}
+	/*根据account从数据库中获取用户信息*/
+	private UserInfo getUserInfo(String account){
+		UserInfo item=new UserInfo();
+		item.setAccount(account);
+		UserInfoDAL userInfoDAL=new UserInfoDAL(this);
+		UserInfo model=userInfoDAL.queryUserInfo(item);
 		userInfoDAL.close();
 		return model;
 	}

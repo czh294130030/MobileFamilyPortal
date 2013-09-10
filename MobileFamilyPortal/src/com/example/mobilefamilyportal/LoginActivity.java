@@ -55,11 +55,15 @@ public class LoginActivity extends Activity {
 			String account=accountEditText.getText().toString().trim();
 			String password=passwordEditText.getText().toString().trim();
 			if(!account.equals("")&&!password.equals("")){
+				UserInfo item=new UserInfo();
+				item.setAccount(account);
+				item.setPassword(password);
 				UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-				UserInfo model=userInfoDAL.queryUserInfoByAccountAndPassword(account, password);
+				UserInfo model=userInfoDAL.queryUserInfo(item);
 				userInfoDAL.close();
 				if(model!=null){
 					Intent intent=new Intent();
+					intent.putExtra("userID", model.getUserID());
 					setResult(BaseField.LOGIN_SUCCESSFULLY, intent);
 					finish();
 				}else{

@@ -1,6 +1,7 @@
 package com.example.mobilefamilyportal;
 
 import com.example.base.BaseField;
+import com.example.base.BaseMethod;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -21,7 +22,6 @@ public class MainActivity extends Activity {
 	private ImageButton loginImageButton=null;
 	private ImageButton bankImageButton=null;
 	private ImageButton settingsImageButton=null;
-	private boolean isLogin=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +33,13 @@ public class MainActivity extends Activity {
 		/*登录*/
 		loginImageButton=(ImageButton)findViewById(R.id.loginImageButton);
 		loginImageButton.setOnTouchListener(onMyOnTouchListener);
-		loginImageButton.setOnClickListener(onMyClickListener);
+		loginImageButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+				startActivityForResult(intent, BaseField.LOGIN);
+			}
+		});
 		/*用户信息*/
 		userInfoImageButton=(ImageButton)findViewById(R.id.userInfoImageButton);
 		userInfoImageButton.setOnTouchListener(onMyOnTouchListener);
@@ -41,13 +47,13 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				if(isLogin){
+				if(BaseField.LOGIN_USER_ID==BaseField.ADMIN_USER_ID){/*登录的用户是管理员*/
 					Intent intent=new Intent(MainActivity.this, UserInfoActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(intent);
 				}
 				else{
-					goToLogin();
+					BaseMethod.showInformation(MainActivity.this, R.string.warm_prompt, R.string.login_as_administrator);
 				}
 			}
 		});
@@ -60,19 +66,14 @@ public class MainActivity extends Activity {
 		settingsImageButton.setOnTouchListener(onMyOnTouchListener);
 		settingsImageButton.setOnClickListener(onMyClickListener);
 	}
-	/*跳转到登录界面*/
-	private void goToLogin(){
-		Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-		startActivityForResult(intent, BaseField.LOGIN);
-	}
-	 /**  
-     * 重写onActivityResult这个方法  
+	/* 重写onActivityResult这个方法  
      * 是要等到LoginActivity finish后才会执行的  
      */    
     @Override    
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
     	if(requestCode==BaseField.LOGIN&&resultCode==BaseField.LOGIN_SUCCESSFULLY){
-    		isLogin=true;
+    		Bundle bundle=data.getExtras();
+    		BaseField.LOGIN_USER_ID=bundle.getInt("userID");
     	}
     	super.onActivityResult(requestCode, resultCode, data);  
     }
@@ -99,7 +100,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	/*关闭Activity*/ 

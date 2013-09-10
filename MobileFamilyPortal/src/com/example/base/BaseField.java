@@ -22,4 +22,8 @@ public class BaseField {
 	public static final int UPDATE_CANCEL=2004;
 	public static final int LOGIN_SUCCESSFULLY=3002;
 	public static final int LOGIN_CANCEL=3003;
+	/*记录登录用户的userID*/
+	public static int LOGIN_USER_ID=0;
+	/*管理员的userID=1*/
+	public static final int ADMIN_USER_ID=1;
 }

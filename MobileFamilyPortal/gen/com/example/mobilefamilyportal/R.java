@@ -85,6 +85,7 @@ public final class R {
     }
     public static final class string {
         public static final int account=0x7f07000e;
+        public static final int account_has_been_used=0x7f07001a;
         public static final int account_required=0x7f070012;
         public static final int action_settings=0x7f070002;
         public static final int add_item=0x7f070005;
@@ -92,21 +93,22 @@ public final class R {
         public static final int add_userinfo=0x7f070009;
         public static final int app_name=0x7f070000;
         public static final int cancel=0x7f07000d;
-        public static final int confirm_to_delete=0x7f07001a;
+        public static final int confirm_to_delete=0x7f07001c;
         public static final int delete_item=0x7f070007;
         public static final int delete_unsuccessfully=0x7f070018;
         public static final int edit_item=0x7f070006;
         public static final int edit_userinfo=0x7f07000a;
         public static final int hello_world=0x7f070003;
-        public static final int leave_login=0x7f07001d;
+        public static final int leave_login=0x7f07001f;
         public static final int login=0x7f07000b;
+        public static final int login_as_administrator=0x7f07001b;
         public static final int login_unsuccessfully=0x7f070019;
-        public static final int module_build=0x7f07001b;
+        public static final int module_build=0x7f07001d;
         public static final int ok=0x7f07000c;
         public static final int password=0x7f070010;
         public static final int password_required=0x7f070014;
         public static final int search_keyword=0x7f070015;
-        public static final int unsave_changes=0x7f07001c;
+        public static final int unsave_changes=0x7f07001e;
         public static final int update_unsuccessfully=0x7f070017;
         public static final int user_info=0x7f070004;
         public static final int user_name=0x7f07000f;
