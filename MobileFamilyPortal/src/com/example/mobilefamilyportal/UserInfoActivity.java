@@ -223,6 +223,7 @@ public class UserInfoActivity extends Activity {
     	if(requestCode==BaseField.EDIT_USERINFO&&resultCode==BaseField.UPDATE_SUCCESSFULLY){
     		bind();
     	}
+    	super.onActivityResult(requestCode, resultCode, data);  
     }
     
     /*¹Ø±ÕActivity*/ 

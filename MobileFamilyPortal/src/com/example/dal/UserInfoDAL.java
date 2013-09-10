@@ -104,8 +104,26 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 	/*根据id获取用户信息*/
 	public UserInfo queryUserInfoByID(int id){
 		UserInfo model=new UserInfo();
-		Log.i(TAG, "SELECT One UserInfo");
+		Log.i(TAG, "SELECT One UserInfo By ID");
 		Cursor cursor=db.rawQuery("SELECT userID as _id, account, userName, password FROM "+TABLE_NAME+" WHERE userID="+id, null);
+		if(cursor.getCount()>0)
+		{
+			while(cursor.moveToNext()){
+				model.setUserID(cursor.getInt(cursor.getColumnIndex("_id")));
+				model.setAccount(cursor.getString(cursor.getColumnIndex("account")));
+				model.setUserName(cursor.getString(cursor.getColumnIndex("userName")));
+				model.setPassword(cursor.getString(cursor.getColumnIndex("password")));
+			}
+			return model;
+		}else{
+			return null;
+		}
+	}
+	/*根据account和password获取用户信息*/
+	public UserInfo queryUserInfoByAccountAndPassword(String account, String password){
+		UserInfo model=new UserInfo();
+		Log.i(TAG, "SELECT One UserInfo By Account and Password");
+		Cursor cursor=db.rawQuery("SELECT userID as _id, account, userName, password FROM "+TABLE_NAME+" WHERE account='"+account+"' and password='"+password+"'", null);
 		if(cursor.getCount()>0)
 		{
 			while(cursor.moveToNext()){

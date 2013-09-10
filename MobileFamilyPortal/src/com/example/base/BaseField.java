@@ -12,6 +12,7 @@ public class BaseField {
 	/*requestCode*/
 	public static final int ADD_USERINFO=1001;
 	public static final int EDIT_USERINFO=2001;
+	public static final int LOGIN=3001;
 	/*ResultCode*/
 	public static final int ADD_SUCCESSFULLY=1002;
 	public static final int ADD_UNSUCCESSFULLY=1003;
@@ -19,4 +20,6 @@ public class BaseField {
 	public static final int UPDATE_SUCCESSFULLY=2002;
 	public static final int UPDATE_UNSUCCESSFULLY=2003;
 	public static final int UPDATE_CANCEL=2004;
+	public static final int LOGIN_SUCCESSFULLY=3002;
+	public static final int LOGIN_CANCEL=3003;
 }

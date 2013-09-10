@@ -1,5 +1,7 @@
 package com.example.mobilefamilyportal;
 
+import com.example.base.BaseField;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +21,7 @@ public class MainActivity extends Activity {
 	private ImageButton loginImageButton=null;
 	private ImageButton bankImageButton=null;
 	private ImageButton settingsImageButton=null;
+	private boolean isLogin=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,9 +41,14 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View arg0) {
-				Intent intent=new Intent(MainActivity.this, UserInfoActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(intent);
+				if(isLogin){
+					Intent intent=new Intent(MainActivity.this, UserInfoActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(intent);
+				}
+				else{
+					goToLogin();
+				}
 			}
 		});
 		/*银行*/
@@ -52,6 +60,22 @@ public class MainActivity extends Activity {
 		settingsImageButton.setOnTouchListener(onMyOnTouchListener);
 		settingsImageButton.setOnClickListener(onMyClickListener);
 	}
+	/*跳转到登录界面*/
+	private void goToLogin(){
+		Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+		startActivityForResult(intent, BaseField.LOGIN);
+	}
+	 /**  
+     * 重写onActivityResult这个方法  
+     * 是要等到LoginActivity finish后才会执行的  
+     */    
+    @Override    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    	if(requestCode==BaseField.LOGIN&&resultCode==BaseField.LOGIN_SUCCESSFULLY){
+    		isLogin=true;
+    	}
+    	super.onActivityResult(requestCode, resultCode, data);  
+    }
 	/*显示模块正在建设*/
 	private OnClickListener onMyClickListener=new OnClickListener() {
 		@Override
