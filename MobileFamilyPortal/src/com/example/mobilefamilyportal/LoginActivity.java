@@ -64,6 +64,7 @@ public class LoginActivity extends Activity {
 				if(model!=null){
 					Intent intent=new Intent();
 					intent.putExtra("userID", model.getUserID());
+					intent.putExtra("userName", model.getUserName());
 					setResult(BaseField.LOGIN_SUCCESSFULLY, intent);
 					finish();
 				}else{

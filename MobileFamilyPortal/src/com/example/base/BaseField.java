@@ -24,6 +24,8 @@ public class BaseField {
 	public static final int LOGIN_CANCEL=3003;
 	/*记录登录用户的userID*/
 	public static int LOGIN_USER_ID=0;
+	/*记录登录用户的userName*/
+	public static String LOGIN_USER_NAME="";
 	/*管理员的userID=1*/
 	public static final int ADMIN_USER_ID=1;
 }

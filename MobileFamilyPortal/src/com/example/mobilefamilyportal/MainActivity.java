@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+	private TextView welcomeTextView=null;
 	private ImageButton dailyConsumeImageButton=null;
 	private ImageButton userInfoImageButton=null;
 	private ImageButton loginImageButton=null;
@@ -26,6 +28,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		welcomeTextView=(TextView)findViewById(R.id.welcomeTextView);
+		showWelcomeInfo();
 		/*日常消费*/
 		dailyConsumeImageButton=(ImageButton)findViewById(R.id.dailyConsumeImageButton);
 		dailyConsumeImageButton.setOnTouchListener(onMyOnTouchListener);
@@ -74,8 +78,18 @@ public class MainActivity extends Activity {
     	if(requestCode==BaseField.LOGIN&&resultCode==BaseField.LOGIN_SUCCESSFULLY){
     		Bundle bundle=data.getExtras();
     		BaseField.LOGIN_USER_ID=bundle.getInt("userID");
+    		BaseField.LOGIN_USER_NAME=bundle.getString("userName");
+    		showWelcomeInfo();
     	}
     	super.onActivityResult(requestCode, resultCode, data);  
+    }
+    /*显示欢迎信息*/
+    private void showWelcomeInfo(){
+    	if(BaseField.LOGIN_USER_NAME.equals("")){
+    		welcomeTextView.setText("guest welcome");
+    	}else {
+			welcomeTextView.setText(BaseField.LOGIN_USER_NAME+" welcome");
+		}
     }
 	/*显示模块正在建设*/
 	private OnClickListener onMyClickListener=new OnClickListener() {
