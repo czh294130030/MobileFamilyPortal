@@ -2,14 +2,11 @@ package com.example.mobilefamilyportal;
 
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
-import com.example.dal.ParaDetailDAL;
 import com.example.dal.ParaInfoDAL;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
