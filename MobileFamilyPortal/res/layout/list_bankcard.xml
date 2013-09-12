@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="15dp">
+	<!-- 卡号 -->
+    <TextView
+        android:id="@+id/cardnoTextView"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+	<!-- 银行类型 -->
+    <TextView
+        android:id="@+id/banktypeTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
+
+</LinearLayout>

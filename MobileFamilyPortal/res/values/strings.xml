@@ -9,6 +9,7 @@
 	<string name="edit_item">EDIT</string>
 	<string name="delete_item">DELETE</string>
 	<string name="userinfo">USER INFORMATION</string>
+	<string name="bank_card_info">BANK CARD INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
 	<string name="edit_userinfo">EDIT USER INFORMATION</string>
 	<string name="login">LOGIN</string>
@@ -17,6 +18,8 @@
 	<string name="account">account</string>
 	<string name="user_name">user name</string>
 	<string name="password">password</string>
+	<string name="card_no">card no</string>
+	<string name="bank_type">bank type</string>
 	<string name="warm_prompt">Warm prompt</string>
 	<string name="account_required">Please enter your account.</string>
 	<string name="username_required">Please enter your username.</string>
@@ -28,6 +31,7 @@
 	<string name="login_unsuccessfully">Login was unsuccessful. Please correct the errors and try again.</string>
 	<string name="account_has_been_used">Account has been used. Please select another. </string>
 	<string name="login_as_administrator">You have no authority. Please login as administrator.</string>
+	<string name="login_as_normal_user">You have no authority. Please login as normal user.</string>
 	<string name="confirm_to_delete">Confirm to delete user info?</string>
 	<string name="module_build">This module is being build.</string>
 	<string name="unsave_changes">Unsaved changes will be lost.</string>

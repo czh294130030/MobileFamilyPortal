@@ -2,10 +2,14 @@ package com.example.mobilefamilyportal;
 
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
+import com.example.dal.ParaDetailDAL;
+import com.example.dal.ParaInfoDAL;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -30,6 +34,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		welcomeTextView=(TextView)findViewById(R.id.welcomeTextView);
 		showWelcomeInfo();
+		/*创建所有表和内置数据*/
+		ParaInfoDAL paraInfoDAL=new ParaInfoDAL(this);
+		paraInfoDAL.close();
 		/*日常消费*/
 		dailyConsumeImageButton=(ImageButton)findViewById(R.id.dailyConsumeImageButton);
 		dailyConsumeImageButton.setOnTouchListener(onMyOnTouchListener);

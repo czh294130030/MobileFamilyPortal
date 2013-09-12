@@ -2,6 +2,9 @@ package com.example.base;
 
 public class BaseField {
 	public static final String DATABASE_NAME = "MobileFamilyPortal";//数据库的名字
+	public static final String TABLE_NAME_USERINFO="UserInfo";
+	public static final String TABLE_NAME_PARAINFO="ParaInfo";
+	public static final String TABLE_NAME_PARADETAIL="ParaDetail";
 	public static final int DATABASEVERSION = 1;//版本号
 	/*菜单*/
 	public static final int ADD=0;
@@ -28,4 +31,8 @@ public class BaseField {
 	public static String LOGIN_USER_NAME="";
 	/*管理员的userID=1*/
 	public static final int ADMIN_USER_ID=1;
+	/*界面测试标记*/
+	public static final String UI_TAG="UI_TEST";
+	/*数据库测试标记*/
+	public static final String DATABASE_TAG="DATABASE_TEST";
 }
