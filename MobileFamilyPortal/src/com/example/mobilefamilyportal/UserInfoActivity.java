@@ -36,7 +36,7 @@ public class UserInfoActivity extends Activity {
 	private EditText searchEditText=null;
 	private ImageButton clearImageButton=null;
 	private Cursor cursor=null;
-	private String TAG="Menu";
+	private String TAG="MENU_USER_INFO";
 	/*存放修改或删除UserInfo的编号*/
 	private int id=0;
 	@Override
