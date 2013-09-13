@@ -73,7 +73,7 @@ public class UserInfoActivity extends Activity {
 				}
 			}
 		});
-	    /*单击ListView触发事件*/
+	    /*长按ListView item触发事件*/
 	    userInfoListView=(ListView)findViewById(R.id.userInfoListView);
 	    userInfoListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
 	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
