@@ -12,6 +12,9 @@
 	<string name="bank_card_info">BANK CARD INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
 	<string name="edit_userinfo">EDIT USER INFORMATION</string>
+	<string name="add_bank_card">ADD BANK CARD</string>
+	<string name="edit_bank_card">EDIT BANK CARD</string>
+	<string name="view_bank_card">VIEW BANK CARD</string>
 	<string name="login">LOGIN</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
@@ -19,12 +22,15 @@
 	<string name="user_name">user name</string>
 	<string name="password">password</string>
 	<string name="card_no">card no</string>
-	<string name="bank_type">bank type</string>
+	<string name="card_type">card type</string>
+	<string name="card_city">city</string>
+	<string name="card_user">user</string>
 	<string name="warm_prompt">Warm prompt</string>
 	<string name="account_required">Please enter your account.</string>
 	<string name="username_required">Please enter your username.</string>
 	<string name="password_required">Please enter your password.</string>
 	<string name="search_keyword">Please input search keyword.</string>
+	<string name="card_no_required">Please enter card no.</string>
 	<string name="add_unsuccessfully">Failed to add.</string>
 	<string name="update_unsuccessfully">Failed to update.</string>
 	<string name="delete_unsuccessfully">Failed to delete.</string>

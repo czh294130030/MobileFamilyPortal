@@ -154,7 +154,7 @@ public class UserInfoActivityOP extends Activity {
 		UserInfo item=new UserInfo();
 		item.setUserID(_id);
 		UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-		UserInfo model=userInfoDAL.queryUserInfo(item);
+		UserInfo model=userInfoDAL.queryModel(item);
 		userInfoDAL.close();
 		return model;
 	}
@@ -163,7 +163,7 @@ public class UserInfoActivityOP extends Activity {
 		UserInfo item=new UserInfo();
 		item.setAccount(account);
 		UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-		UserInfo model=userInfoDAL.queryUserInfo(item);
+		UserInfo model=userInfoDAL.queryModel(item);
 		userInfoDAL.close();
 		return model;
 	}

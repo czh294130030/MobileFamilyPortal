@@ -90,8 +90,8 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 		return db.rawQuery(sqlString, null);
 	}
 	
-	/*根据条件获取用户信息*/
-	public UserInfo queryUserInfo(UserInfo item){
+	/*根据条件获取Model*/
+	public UserInfo queryModel(UserInfo item){
 		UserInfo model=new UserInfo();
 		Log.i(BaseField.DATABASE_TAG, "SELECT One "+BaseField.TABLE_NAME_USERINFO);
 		String sql="SELECT userID as _id, account, userName, password FROM "+BaseField.TABLE_NAME_USERINFO+" WHERE 1=1";

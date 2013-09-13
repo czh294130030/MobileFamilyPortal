@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/button_mouseover_color"
-            android:text="@string/bank_type" />
+            android:text="@string/card_type" />
     </LinearLayout>
     <View 
 	    android:layout_height="1dp"

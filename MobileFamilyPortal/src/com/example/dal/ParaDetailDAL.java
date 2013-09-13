@@ -1,6 +1,9 @@
 package com.example.dal;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.example.base.BaseField;
+import com.example.model.KeyValue;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,7 +47,7 @@ public class ParaDetailDAL extends SQLiteOpenHelper {
 		super.onOpen(db1);
 	}
 	
-	/*查询所有的数据 ，返回Cursor对象*/
+	/*查询数据 ，返回Cursor对象*/
 	public Cursor query(String whereString) {
 		Log.i(BaseField.DATABASE_TAG, "SELECT "+BaseField.TABLE_NAME_PARADETAIL);
 		/*结果集游标Cursor返回的数据中，一定要有一列名为“_id”*/
@@ -53,6 +56,20 @@ public class ParaDetailDAL extends SQLiteOpenHelper {
 			sqlString+=" "+whereString;
 		}
 		return db.rawQuery(sqlString, null);
+	}
+	/*查询数据， 返回key-value List对象*/
+	public List<KeyValue> queryKeyValueList(String whereString){
+		List<KeyValue> items=new ArrayList<KeyValue>();
+		Cursor cursor=query(whereString);
+		if(cursor.getCount()>0){
+			while(cursor.moveToNext()){
+				KeyValue item=new KeyValue();
+				item.setKey(cursor.getInt(cursor.getColumnIndex("_id")));
+				item.setValue(cursor.getString(cursor.getColumnIndex("description")));
+				items.add(item);
+			}
+		}
+		return items;
 	}
 }
 

@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
 				item.setAccount(account);
 				item.setPassword(password);
 				UserInfoDAL userInfoDAL=new UserInfoDAL(this);
-				UserInfo model=userInfoDAL.queryUserInfo(item);
+				UserInfo model=userInfoDAL.queryModel(item);
 				userInfoDAL.close();
 				if(model!=null){
 					Intent intent=new Intent();

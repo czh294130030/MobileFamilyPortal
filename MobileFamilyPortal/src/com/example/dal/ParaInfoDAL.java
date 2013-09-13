@@ -27,7 +27,16 @@ public class ParaInfoDAL extends SQLiteOpenHelper {
 		createParaInfo(db);
 		createParaDetail(db);
 		createUserInfo(db);
+		createBankCard(db);
 	}
+	/*创建银行卡信息表*/
+	private void createBankCard(SQLiteDatabase db){
+		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_BANK_CARD);
+		String sql="CREATE TABLE "+BaseField.TABLE_NAME_BANK_CARD
+				+"(cardID INTEGER PRIMARY KEY AUTOINCREMENT,cardNO NVARCHAR(50),userID INTEGER,bankID INTEGER,cityID INTEGER);";
+		db.execSQL(sql);
+	}
+	/*创建参数信息表并内置数据*/
 	private void createParaInfo(SQLiteDatabase db){
 		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_PARAINFO);
 		String sql = "CREATE TABLE "+BaseField.TABLE_NAME_PARAINFO
@@ -42,6 +51,7 @@ public class ParaInfoDAL extends SQLiteOpenHelper {
 			}
 		}
 	}
+	/*创建参数明细表并内置数据*/
 	private void createParaDetail(SQLiteDatabase db){
 		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_PARADETAIL);
 		String sql = "CREATE TABLE "+BaseField.TABLE_NAME_PARADETAIL
@@ -56,6 +66,7 @@ public class ParaInfoDAL extends SQLiteOpenHelper {
 			}
 		}
 	}
+	/*创建用户信息表并内置数据*/
 	private void createUserInfo(SQLiteDatabase db){
 		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_USERINFO);
 		String sql = "CREATE TABLE "+BaseField.TABLE_NAME_USERINFO
