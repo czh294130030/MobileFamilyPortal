@@ -39,15 +39,13 @@ public class BankCardActivity extends Activity {
 	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
 	    		/*获取操作BankCard的编号*/
 	    		id=Integer.parseInt(String.valueOf(parent.getItemIdAtPosition(position)));
-	    		if(id!=1){
-		    		/*显示修改、删除菜单*/
-		    		isAdd=false;
-		    		if (Build.VERSION.SDK_INT >= 11&&isFirstTrigger) { 
-		    			menuRefresh();
-		    			isFirstTrigger=false;
-		    		}
-		    		openOptionsMenu();
+	    		/*显示修改、删除菜单*/
+	    		isAdd=false;
+	    		if (Build.VERSION.SDK_INT >= 11&&isFirstTrigger) { 
+	    			menuRefresh();
+	    			isFirstTrigger=false;
 	    		}
+	    		openOptionsMenu();
 	    		return true;
 	    	}
 		});
@@ -123,8 +121,12 @@ public class BankCardActivity extends Activity {
 			intent.putExtra("op", BaseField.ADD);
 			startActivityForResult(intent, BaseField.ADD_BANK_CARD);
 			break;}
-		case BaseField.EDIT:
-			break;
+		case BaseField.EDIT:{
+			Intent intent=new Intent(BankCardActivity.this,BankCardActivityOP.class);
+			intent.putExtra("id", id);
+			intent.putExtra("op", BaseField.EDIT);
+			startActivityForResult(intent, BaseField.EDIT_BANK_CARD);
+			break;}
 		case BaseField.DELETE:
 			break;
 		default:

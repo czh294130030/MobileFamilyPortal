@@ -1,6 +1,10 @@
 package com.example.dal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.base.BaseField;
+import com.example.model.KeyValue;
 import com.example.model.UserInfo;
 import android.content.ContentValues;
 import android.content.Context;
@@ -120,6 +124,21 @@ public class UserInfoDAL extends SQLiteOpenHelper {
 		}else{
 			return null;
 		}
+	}
+	
+	/*查询数据， 返回key-value List对象*/
+	public List<KeyValue> queryKeyValueList(String whereString){
+		List<KeyValue> items=new ArrayList<KeyValue>();
+		Cursor cursor=query(whereString);
+		if(cursor.getCount()>0){
+			while(cursor.moveToNext()){
+				KeyValue item=new KeyValue();
+				item.setKey(cursor.getInt(cursor.getColumnIndex("_id")));
+				item.setValue(cursor.getString(cursor.getColumnIndex("userName")));
+				items.add(item);
+			}
+		}
+		return items;
 	}
 }
 

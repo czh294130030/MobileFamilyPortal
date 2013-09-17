@@ -54,32 +54,33 @@ public final class R {
         public static final int user=0x7f02000d;
     }
     public static final class id {
-        public static final int accountEditText=0x7f0a0007;
-        public static final int accountTextView=0x7f0a0017;
-        public static final int action_settings=0x7f0a0019;
-        public static final int bankImageButton=0x7f0a0011;
+        public static final int accountEditText=0x7f0a000c;
+        public static final int accountTextView=0x7f0a0018;
+        public static final int action_settings=0x7f0a001a;
+        public static final int bankImageButton=0x7f0a0012;
         public static final int bankcardListView=0x7f0a0005;
         public static final int cardCitySpinner=0x7f0a0009;
+        public static final int cardNOEditText=0x7f0a0007;
         public static final int cardTypeSpinner=0x7f0a0008;
         public static final int cardUserSpinner=0x7f0a000b;
-        public static final int cardnoTextView=0x7f0a0015;
-        public static final int cardtypeTextView=0x7f0a0016;
+        public static final int cardnoTextView=0x7f0a0016;
+        public static final int cardtypeTextView=0x7f0a0017;
         public static final int clearImageButton=0x7f0a0002;
-        public static final int dailyConsumeImageButton=0x7f0a000e;
-        public static final int loginImageButton=0x7f0a000f;
-        public static final int passwordEditText=0x7f0a000c;
+        public static final int dailyConsumeImageButton=0x7f0a000f;
+        public static final int loginImageButton=0x7f0a0010;
+        public static final int passwordEditText=0x7f0a000d;
         public static final int searchEditText=0x7f0a0001;
-        public static final int settingsImageButton=0x7f0a0012;
+        public static final int settingsImageButton=0x7f0a0013;
         public static final int textView1=0x7f0a0000;
         public static final int textView2=0x7f0a0003;
         public static final int textView3=0x7f0a0004;
         public static final int textView4=0x7f0a000a;
         public static final int titleTextView=0x7f0a0006;
-        public static final int userInfoImageButton=0x7f0a0010;
-        public static final int userInfoListView=0x7f0a0013;
-        public static final int userNameTextView=0x7f0a0018;
-        public static final int usernameEditText=0x7f0a0014;
-        public static final int welcomeTextView=0x7f0a000d;
+        public static final int userInfoImageButton=0x7f0a0011;
+        public static final int userInfoListView=0x7f0a0014;
+        public static final int userNameTextView=0x7f0a0019;
+        public static final int usernameEditText=0x7f0a0015;
+        public static final int welcomeTextView=0x7f0a000e;
     }
     public static final class layout {
         public static final int activity_bankcard=0x7f030000;
