@@ -85,7 +85,22 @@ public class BankCardDAL extends SQLiteOpenHelper {
 	public Cursor query(String whereString) {
 		Log.i(BaseField.DATABASE_TAG, "SELECT "+BaseField.TABLE_NAME_BANK_CARD);
 		/*结果集游标Cursor返回的数据中，一定要有一列名为“_id”*/
-		String sqlString="SELECT cardID as _id, cardNO, userID, bankID, cityID FROM "+BaseField.TABLE_NAME_BANK_CARD; 
+		String sqlString="SELECT " +
+								"a.cardID as _id, " +
+								"a.cardNO, " +
+								"a.userID, " +
+								"a.bankID, " +
+								"a.cityID, " +
+								"b.userName, "+
+								"c.description as cardType, "+
+								"d.description as city "+
+								 " FROM "+BaseField.TABLE_NAME_BANK_CARD +" AS a"+
+								 " INNER JOIN "+BaseField.TABLE_NAME_USERINFO+" AS b"+
+								 " ON a.userID=b.userID"+
+								 " INNER JOIN "+BaseField.TABLE_NAME_PARADETAIL+" AS c"+
+								 " ON a.bankID=c.detailID"+
+								 " INNER JOIN "+BaseField.TABLE_NAME_PARADETAIL+" AS d"+
+								 " ON a.cityID=d.detailID"; 
 		if(!whereString.equals("")){
 			sqlString+=" "+whereString;
 		}

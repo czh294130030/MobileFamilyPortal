@@ -6,16 +6,22 @@ import com.example.dal.BankCardDAL;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class BankCardActivity extends Activity {
@@ -29,10 +35,41 @@ public class BankCardActivity extends Activity {
 	private ListView bankcardListView=null;
 	private String TAG="MENU_BANK_CARD";
 	private boolean isAdd=true;
+	private EditText searchEditText=null;
+	private ImageButton clearImageButton=null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_bankcard);
+	    /*清空搜索条件*/
+	    clearImageButton=(ImageButton)findViewById(R.id.clearImageButton);
+	    clearImageButton.setOnClickListener(new ImageButton.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				searchEditText.setText("");
+			}
+		});
+	    /*修改EditText时重新绑定数据和显示（隐藏）清空按钮*/
+	    searchEditText=(EditText)findViewById(R.id.searchEditText);
+	    searchEditText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+				bind();
+			}
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+			}
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				String searchString=searchEditText.getText().toString().trim();
+				if(searchString.equals("")){
+					clearImageButton.setVisibility(View.INVISIBLE);
+				}else{
+					clearImageButton.setVisibility(View.VISIBLE);
+				}
+			}
+		});
 	    bankcardListView=(ListView)findViewById(R.id.bankcardListView);
 	    /*长按ListView item触发事件*/
 	    bankcardListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
@@ -55,13 +92,18 @@ public class BankCardActivity extends Activity {
 	/*绑定银行卡信息*/
 	@SuppressWarnings("deprecation")
 	private void bind(){
+		String searchString=searchEditText.getText().toString().trim();
+		String whereString="";
+		if(!searchString.equals("")){
+			whereString="where a.cardNO like'%"+searchString+"%' or c.description like '%"+searchString+"%'";
+		}
 		BankCardDAL bankCardDAL=new BankCardDAL(this);
-		cursor=bankCardDAL.query("");
+		cursor=bankCardDAL.query(whereString);
 		adapter=new SimpleCursorAdapter(
 				this,
 				R.layout.list_bankcard,
 				cursor,
-				new String[]{"cardNO","bankID"},
+				new String[]{"cardNO","cardType"},
 				new int[]{R.id.cardnoTextView,R.id.cardtypeTextView});
 		bankcardListView.setAdapter(adapter);
 		bankCardDAL.close();
@@ -128,11 +170,34 @@ public class BankCardActivity extends Activity {
 			startActivityForResult(intent, BaseField.EDIT_BANK_CARD);
 			break;}
 		case BaseField.DELETE:
+			deleteBankCard(id);
 			break;
 		default:
 			break;
 		}
     	return true;
+    }
+    /*根据编号删除银行卡信息*/
+    private void deleteBankCard(int _id){
+    	final int cardID=_id;
+    	new AlertDialog.Builder(this)
+    	.setTitle(R.string.warm_prompt)
+    	.setIcon(R.drawable.alert_info)
+    	.setMessage(R.string.confirm_to_delete)
+    	.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				BankCardDAL bankCardDAL=new BankCardDAL(BankCardActivity.this);
+				int result=bankCardDAL.delete(cardID);
+				bankCardDAL.close();
+				if(result>0){
+					bind();
+				}else {
+					BaseMethod.showInformation(BankCardActivity.this, R.string.warm_prompt, R.string.delete_unsuccessfully);
+				}
+			}
+		}).setNegativeButton(R.string.cancel, null)
+		.show();
     }
     /*当B Activity finish时触发获取resultCode和回传参数*/
     @Override    

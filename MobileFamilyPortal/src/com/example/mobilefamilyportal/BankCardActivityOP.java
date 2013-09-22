@@ -118,7 +118,11 @@ public class BankCardActivityOP extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch (item.getItemId()) {
 		case BaseField.OK:
-			addBankCard();
+			if(op==BaseField.ADD){
+				addBankCard();
+			}else{
+				updateBankCard(id);
+			}
 			break;
 		case BaseField.CANCEL:
 			unsaveChanges();
@@ -127,6 +131,23 @@ public class BankCardActivityOP extends Activity {
 			break;
 		}
 		return true;
+	}
+	/*修改银行卡信息*/
+	private void updateBankCard(int _id){
+		BankCard model=getBankCardFromInput();
+		if(model!=null){
+			model.setCardID(_id);
+			BankCardDAL bankCardDAL=new BankCardDAL(this);
+			long result=bankCardDAL.update(model);
+			bankCardDAL.close();
+			if(result>0){
+				Intent intent=new Intent();
+				setResult(BaseField.UPDATE_SUCCESSFULLY, intent);
+				finish();
+			}else{
+				BaseMethod.showInformation(this, R.string.warm_prompt, R.string.update_unsuccessfully);
+			}
+		}
 	}
 	/*添加银行卡信息*/
 	private void addBankCard(){
