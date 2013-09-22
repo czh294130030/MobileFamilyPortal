@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class BankCardActivityOP extends Activity {
 
@@ -30,6 +31,7 @@ public class BankCardActivityOP extends Activity {
 	private Spinner cardCitySpinner=null;
 	private Spinner cardUserSpinner=null;
 	private EditText cardNOEditText=null; 
+	private TextView titleTextView=null;
 	private long bankID=0;
 	private long cityID=0;
 	private long userID=0;
@@ -37,6 +39,7 @@ public class BankCardActivityOP extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_bankcardop);
+	    titleTextView=(TextView)findViewById(R.id.titleTextView);
 	    cardNOEditText=(EditText)findViewById(R.id.cardNOEditText);
 	    /*获取选中的银行ID*/
 	    cardTypeSpinner=(Spinner)findViewById(R.id.cardTypeSpinner);
@@ -80,6 +83,7 @@ public class BankCardActivityOP extends Activity {
 	    /*修改银行卡*/
 	    if(op==BaseField.EDIT){
 	    	id=bundle.getInt("id");
+	    	titleTextView.setText(R.string.edit_bank_card);
 	    	bind(id);
 	    }
 	}
