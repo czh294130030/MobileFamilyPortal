@@ -12,11 +12,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:padding="8dp">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="fill_parent"
@@ -35,7 +35,8 @@
                 android:layout_marginRight="5dp"
                 android:background="@color/transparent"
                 android:visibility="invisible"
-                android:src="@drawable/clear" />
+                android:src="@drawable/clear" 
+                android:contentDescription="@string/clear"/>
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -45,24 +46,21 @@
         android:paddingRight="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+		<TextView
+            android:id="@+id/textView3"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:width="150dp"
             android:textSize="20sp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/button_mouseover_color"
-            android:text="@string/card_no" />
-
+            android:text="@string/card_type" />
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView2"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/button_mouseover_color"
-            android:text="@string/card_type" />
+            android:text="@string/card_no" />
     </LinearLayout>
     <View 
 	    android:layout_height="1dp"

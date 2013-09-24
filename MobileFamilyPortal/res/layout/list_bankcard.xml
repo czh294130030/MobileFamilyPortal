@@ -2,17 +2,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="15dp">
-	<!-- 卡号 -->
+    <!-- 银行类型 -->
     <TextView
-        android:id="@+id/cardnoTextView"
+        android:id="@+id/cardtypeTextView"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"/>
-	<!-- 银行类型 -->
+	<!-- 卡号 -->
     <TextView
-        android:id="@+id/cardtypeTextView"
+        android:id="@+id/cardnoTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"/>
-
 </LinearLayout>

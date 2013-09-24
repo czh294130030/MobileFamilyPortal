@@ -42,4 +42,5 @@
 	<string name="module_build">This module is being build.</string>
 	<string name="unsave_changes">Unsaved changes will be lost.</string>
 	<string name="leave_login">Do you want to leave login page?</string>
+	<string name="clear">clear</string>
 </resources>
