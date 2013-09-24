@@ -8,7 +8,7 @@
 	<string name="add_item">ADD</string>
 	<string name="edit_item">EDIT</string>
 	<string name="delete_item">DELETE</string>
-	<string name="view_item">view</string>
+	<string name="view_item">VIEW</string>
 	<string name="userinfo">USER INFORMATION</string>
 	<string name="bank_card_info">BANK CARD INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
