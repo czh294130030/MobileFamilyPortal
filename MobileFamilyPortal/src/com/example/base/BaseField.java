@@ -13,6 +13,7 @@ public class BaseField {
 	public static final int DELETE=2;
 	public static final int OK=3;
 	public static final int CANCEL=4;
+	public static final int VIEW=5;
 	/*requestCode*/
 	public static final int ADD_USERINFO=1001;
 	public static final int EDIT_USERINFO=2001;

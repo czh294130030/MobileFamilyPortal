@@ -126,6 +126,7 @@ public class BankCardActivity extends Activity {
 		menu.add(0, BaseField.ADD, 0, R.string.add_item).setIcon(R.drawable.menu_add);
 		menu.add(0, BaseField.EDIT, 1, R.string.edit_item).setIcon(R.drawable.menu_edit);
 		menu.add(0, BaseField.DELETE, 2, R.string.delete_item).setIcon(R.drawable.menu_delete);
+		menu.add(0, BaseField.VIEW, 3, R.string.view_item).setIcon(R.drawable.menu_view);
 		return true;
     }  
     /* 1. 当手机(Emulator)sdk版本>=11（如我的手机Android Version是4.1.1, Build.VERSION.SDK_INT是16） 
@@ -171,6 +172,9 @@ public class BankCardActivity extends Activity {
 			break;}
 		case BaseField.DELETE:
 			deleteBankCard(id);
+			break;
+		case BaseField.VIEW:
+			
 			break;
 		default:
 			break;
