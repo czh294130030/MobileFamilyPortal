@@ -141,11 +141,13 @@ public class BankCardActivity extends Activity {
 		menu.findItem(BaseField.ADD).setVisible(false);
 		menu.findItem(BaseField.EDIT).setVisible(false);
 		menu.findItem(BaseField.DELETE).setVisible(false);
+		menu.findItem(BaseField.VIEW).setVisible(false);
 		if(isAdd){//添加
 			menu.findItem(BaseField.ADD).setVisible(true);
-		}else{//删除和修改
+		}else{//删除,修改,查看
 			menu.findItem(BaseField.EDIT).setVisible(true);
 			menu.findItem(BaseField.DELETE).setVisible(true);
+			menu.findItem(BaseField.VIEW).setVisible(true);
 		}
 		return super.onPrepareOptionsMenu(menu);
     } 
