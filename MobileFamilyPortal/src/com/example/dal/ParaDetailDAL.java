@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.base.BaseField;
 import com.example.model.KeyValue;
+import com.example.model.ParaDetail;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,6 +58,33 @@ public class ParaDetailDAL extends SQLiteOpenHelper {
 			sqlString+=" "+whereString;
 		}
 		return db.rawQuery(sqlString, null);
+	}
+	/*根据条件获取Model*/
+	public ParaDetail queryModel(ParaDetail item){
+		ParaDetail model=new ParaDetail();
+		Log.i(BaseField.DATABASE_TAG, "SELECT One "+BaseField.TABLE_NAME_PARADETAIL);
+		String sql="SELECT detailID as _id, description, infoID FROM "+BaseField.TABLE_NAME_PARADETAIL+" WHERE 1=1";
+		if(item.getDetailID()!=0){
+			sql+=" and _id="+item.getDetailID();
+		}
+		if(item.getDescription()!=null){
+			sql+=" and description='"+item.getDescription()+"'";
+		}
+		if(item.getInfoID()!=0){
+			sql+=" and infoID="+item.getInfoID();
+		}
+		Cursor cursor=db.rawQuery(sql, null);
+		if(cursor.getCount()>0)
+		{
+			while(cursor.moveToNext()){
+				model.setDetailID(cursor.getInt(cursor.getColumnIndex("_id")));
+				model.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+				model.setInfoID(cursor.getInt(cursor.getColumnIndex("infoID")));
+			}
+			return model;
+		}else{
+			return null;
+		}
 	}
 	/*查询数据， 返回key-value List对象*/
 	public List<KeyValue> queryKeyValueList(String whereString){

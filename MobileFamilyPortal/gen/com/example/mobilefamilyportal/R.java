@@ -38,50 +38,62 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int alert_info=0x7f020000;
-        public static final int bank=0x7f020001;
-        public static final int clear=0x7f020002;
-        public static final int dailyconsume=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int login=0x7f020005;
-        public static final int menu_add=0x7f020006;
-        public static final int menu_cancel=0x7f020007;
-        public static final int menu_delete=0x7f020008;
-        public static final int menu_edit=0x7f020009;
-        public static final int menu_ok=0x7f02000a;
-        public static final int menu_view=0x7f02000b;
-        public static final int search=0x7f02000c;
-        public static final int settings=0x7f02000d;
-        public static final int user=0x7f02000e;
+        public static final int abc=0x7f020000;
+        public static final int alert_info=0x7f020001;
+        public static final int bank=0x7f020002;
+        public static final int bank_of_china=0x7f020003;
+        public static final int bank_of_communications=0x7f020004;
+        public static final int bank_of_jiangsu=0x7f020005;
+        public static final int china_citic_bank=0x7f020006;
+        public static final int china_construction_bank=0x7f020007;
+        public static final int china_merchants_bank=0x7f020008;
+        public static final int clear=0x7f020009;
+        public static final int dailyconsume=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int icbc=0x7f02000c;
+        public static final int login=0x7f02000d;
+        public static final int menu_add=0x7f02000e;
+        public static final int menu_cancel=0x7f02000f;
+        public static final int menu_delete=0x7f020010;
+        public static final int menu_edit=0x7f020011;
+        public static final int menu_ok=0x7f020012;
+        public static final int menu_view=0x7f020013;
+        public static final int other_banks=0x7f020014;
+        public static final int search=0x7f020015;
+        public static final int settings=0x7f020016;
+        public static final int user=0x7f020017;
     }
     public static final class id {
-        public static final int accountEditText=0x7f0a000c;
-        public static final int accountTextView=0x7f0a0018;
-        public static final int action_settings=0x7f0a001a;
-        public static final int bankImageButton=0x7f0a0012;
+        public static final int accountEditText=0x7f0a0011;
+        public static final int accountTextView=0x7f0a001b;
+        public static final int action_settings=0x7f0a001d;
+        public static final int bankImageButton=0x7f0a0017;
         public static final int bankcardListView=0x7f0a0005;
         public static final int cardCitySpinner=0x7f0a0009;
+        public static final int cardCityTextView=0x7f0a000f;
         public static final int cardNOEditText=0x7f0a0007;
+        public static final int cardNoTextView=0x7f0a000e;
         public static final int cardTypeSpinner=0x7f0a0008;
+        public static final int cardTypeTextView=0x7f0a000d;
         public static final int cardUserSpinner=0x7f0a000b;
-        public static final int cardnoTextView=0x7f0a0017;
-        public static final int cardtypeTextView=0x7f0a0016;
+        public static final int cardUserTextView=0x7f0a0010;
         public static final int clearImageButton=0x7f0a0002;
-        public static final int dailyConsumeImageButton=0x7f0a000f;
-        public static final int loginImageButton=0x7f0a0010;
-        public static final int passwordEditText=0x7f0a000d;
+        public static final int dailyConsumeImageButton=0x7f0a0014;
+        public static final int icoImageView=0x7f0a000c;
+        public static final int loginImageButton=0x7f0a0015;
+        public static final int passwordEditText=0x7f0a0012;
         public static final int searchEditText=0x7f0a0001;
-        public static final int settingsImageButton=0x7f0a0013;
+        public static final int settingsImageButton=0x7f0a0018;
         public static final int textView1=0x7f0a0000;
         public static final int textView2=0x7f0a0004;
         public static final int textView3=0x7f0a0003;
         public static final int textView4=0x7f0a000a;
         public static final int titleTextView=0x7f0a0006;
-        public static final int userInfoImageButton=0x7f0a0011;
-        public static final int userInfoListView=0x7f0a0014;
-        public static final int userNameTextView=0x7f0a0019;
-        public static final int usernameEditText=0x7f0a0015;
-        public static final int welcomeTextView=0x7f0a000e;
+        public static final int userInfoImageButton=0x7f0a0016;
+        public static final int userInfoListView=0x7f0a0019;
+        public static final int userNameTextView=0x7f0a001c;
+        public static final int usernameEditText=0x7f0a001a;
+        public static final int welcomeTextView=0x7f0a0013;
     }
     public static final class layout {
         public static final int activity_bankcard=0x7f030000;
@@ -98,6 +110,7 @@ public final class R {
         public static final int main=0x7f090000;
     }
     public static final class string {
+        public static final int abc=0x7f07002d;
         public static final int account=0x7f070013;
         public static final int account_has_been_used=0x7f070024;
         public static final int account_required=0x7f07001b;
@@ -108,12 +121,19 @@ public final class R {
         public static final int add_userinfo=0x7f07000b;
         public static final int app_name=0x7f070000;
         public static final int bank_card_info=0x7f07000a;
+        public static final int bank_ico=0x7f07002c;
+        public static final int bank_of_china=0x7f07002e;
+        public static final int bank_of_communications=0x7f07002f;
+        public static final int bank_of_jiangsu=0x7f070030;
         public static final int cancel=0x7f070012;
         public static final int card_city=0x7f070018;
         public static final int card_no=0x7f070016;
         public static final int card_no_required=0x7f07001f;
         public static final int card_type=0x7f070017;
         public static final int card_user=0x7f070019;
+        public static final int china_citic_bank=0x7f070031;
+        public static final int china_construction_bank=0x7f070032;
+        public static final int china_nerchants_bank=0x7f070033;
         public static final int clear=0x7f07002b;
         public static final int confirm_to_delete=0x7f070027;
         public static final int delete_item=0x7f070007;
@@ -122,6 +142,7 @@ public final class R {
         public static final int edit_item=0x7f070006;
         public static final int edit_userinfo=0x7f07000c;
         public static final int hello_world=0x7f070003;
+        public static final int icbc=0x7f070034;
         public static final int leave_login=0x7f07002a;
         public static final int login=0x7f070010;
         public static final int login_as_administrator=0x7f070025;
@@ -129,6 +150,7 @@ public final class R {
         public static final int login_unsuccessfully=0x7f070023;
         public static final int module_build=0x7f070028;
         public static final int ok=0x7f070011;
+        public static final int other_banks=0x7f070035;
         public static final int password=0x7f070015;
         public static final int password_required=0x7f07001d;
         public static final int search_keyword=0x7f07001e;

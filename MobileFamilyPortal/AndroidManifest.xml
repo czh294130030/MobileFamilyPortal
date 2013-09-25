@@ -29,6 +29,7 @@
         <activity android:name="com.example.mobilefamilyportal.UserInfoActivityOP"></activity>
         <activity android:name="com.example.mobilefamilyportal.BankCardActivity"></activity>
         <activity android:name="com.example.mobilefamilyportal.BankCardActivityOP"></activity>
+        <activity android:name="com.example.mobilefamilyportal.BankCardActivityView"></activity>
     </application>
 
 </manifest>

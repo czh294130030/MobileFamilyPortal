@@ -44,4 +44,14 @@
 	<string name="unsave_changes">Unsaved changes will be lost.</string>
 	<string name="leave_login">Do you want to leave login page?</string>
 	<string name="clear">clear</string>
+	<string name="bank_ico">bank ico</string>
+	<string name="abc">Agricultural Bank of China</string>
+	<string name="bank_of_china">Bank of China</string>
+	<string name="bank_of_communications">Bank of Communications</string>
+	<string name="bank_of_jiangsu">Bank of JiangSu</string>
+	<string name="china_citic_bank">China Citic Bank</string>
+	<string name="china_construction_bank">China Construction Bank</string>
+	<string name="china_nerchants_bank">China Merchants Bank</string>
+	<string name="icbc">Industrial and Commercial Bank of China</string>
+	<string name="other_banks">Other Banks</string>
 </resources>

@@ -104,7 +104,7 @@ public class BankCardActivity extends Activity {
 				R.layout.list_bankcard,
 				cursor,
 				new String[]{"cardNO","cardType"},
-				new int[]{R.id.cardnoTextView,R.id.cardtypeTextView});
+				new int[]{R.id.cardNoTextView,R.id.cardTypeTextView});
 		bankcardListView.setAdapter(adapter);
 		bankCardDAL.close();
 	}
@@ -176,7 +176,9 @@ public class BankCardActivity extends Activity {
 			deleteBankCard(id);
 			break;
 		case BaseField.VIEW:
-			
+			Intent intent=new Intent(BankCardActivity.this, BankCardActivityView.class);
+			intent.putExtra("id", id);
+			startActivity(intent);
 			break;
 		default:
 			break;

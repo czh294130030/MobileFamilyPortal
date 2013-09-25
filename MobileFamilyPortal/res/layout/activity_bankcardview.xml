@@ -3,6 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+	<TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TitleStyle"
+        android:text="@string/view_bank_card" />
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+		<ImageView
+		    android:id="@+id/icoImageView"
+		    android:layout_width="40dp"
+		    android:layout_height="40dp"
+		    android:src="@drawable/abc"
+		    android:layout_margin="10dp"
+		    android:contentDescription="@string/bank_ico" />
+		<TextView
+		    android:id="@+id/cardTypeTextView"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:textSize="20sp"
+		    android:text="@string/abc" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
+        <TextView
+            android:id="@+id/cardNoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
+        <TextView
+            android:id="@+id/cardCityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/cardUserTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"/>
+        
+    </LinearLayout>
 </LinearLayout>

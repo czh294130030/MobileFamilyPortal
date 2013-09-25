@@ -114,4 +114,38 @@ public class BaseMethod {
     	items.add(item12);
     	return items;
     }
+    /*根据银行卡的编号获取银行卡图标的编号*/
+    public static int getBankIcoIDByBankID(int _bankID){
+    	int bankIcoID=0;
+    	switch (_bankID) {
+		case 1:
+			bankIcoID=R.drawable.bank_of_china;
+			break;
+		case 2:
+			bankIcoID=R.drawable.icbc;
+			break;
+		case 3:
+			bankIcoID=R.drawable.abc;
+			break;
+		case 4:
+			bankIcoID=R.drawable.bank_of_communications;
+			break;
+		case 5:
+			bankIcoID=R.drawable.china_construction_bank;
+			break;
+		case 6:
+			bankIcoID=R.drawable.china_citic_bank;
+			break;
+		case 7:
+			bankIcoID=R.drawable.china_merchants_bank;
+			break;
+		case 8:
+			bankIcoID=R.drawable.bank_of_jiangsu;
+			break;
+		default:
+			bankIcoID=R.drawable.other_banks;
+			break;
+		}
+    	return bankIcoID;
+    }
 }
