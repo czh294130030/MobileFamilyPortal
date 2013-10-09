@@ -28,6 +28,22 @@ public class ParaInfoDAL extends SQLiteOpenHelper {
 		createParaDetail(db);
 		createUserInfo(db);
 		createBankCard(db);
+		createConsume(db);
+		createDailyConsume(db);
+	}
+	/*创建日常消费数据表*/
+	private void createDailyConsume(SQLiteDatabase db){
+		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_DAILY_CONSUME);
+		String sql="CREATE TABLE "+BaseField.TABLE_NAME_DAILY_CONSUME
+				+"(dailyID INTEGER PRIMARY KEY AUTOINCREMENT,amount decimal(18,2),date NVARCHAR(50));";
+		db.execSQL(sql);
+	}
+	/*创建消费表*/
+	private void createConsume(SQLiteDatabase db){
+		Log.i(BaseField.DATABASE_TAG, "CREATE TABLE "+BaseField.TABLE_NAME_CONSUME);
+		String sql="CREATE TABLE "+BaseField.TABLE_NAME_CONSUME
+				+"(consumeID INTEGER PRIMARY KEY AUTOINCREMENT,description NVARCHAR(500),amount decimal(18,2),typeID INTEGER,dailyID INTEGER);";
+		db.execSQL(sql);
 	}
 	/*创建银行卡信息表*/
 	private void createBankCard(SQLiteDatabase db){

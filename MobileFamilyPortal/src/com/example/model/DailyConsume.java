@@ -1,12 +1,10 @@
 package com.example.model;
 
-import java.sql.Date;
-
 public class DailyConsume {
 	
 	private int dailyID;
 	private double amount;
-	private Date date;
+	private String date;
 	
 	public int getDailyID() {
 		return dailyID;
@@ -20,10 +18,10 @@ public class DailyConsume {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 }

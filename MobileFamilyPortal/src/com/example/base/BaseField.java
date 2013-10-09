@@ -6,6 +6,8 @@ public class BaseField {
 	public static final String TABLE_NAME_PARAINFO="ParaInfo";//参数信息表
 	public static final String TABLE_NAME_PARADETAIL="ParaDetail";//参数明细表
 	public static final String TABLE_NAME_BANK_CARD="BankCard";//银行卡表
+	public static final String TABLE_NAME_DAILY_CONSUME="DailyConsume";//日常消费表
+	public static final String TABLE_NAME_CONSUME="Consume";//消费
 	public static final int DATABASEVERSION = 1;//版本号
 	/*菜单*/
 	public static final int ADD=0;
