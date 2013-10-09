@@ -53,17 +53,24 @@ public class BaseMethod {
     /*获取内置的ParaInfo*/
     public static List<ParaInfo> getParaInfos(){
     	List<ParaInfo> items=new ArrayList<ParaInfo>();
+    	/*银行类型*/
     	ParaInfo item1=new ParaInfo();
     	item1.setDescription("bank");
     	items.add(item1);
+    	/*城市*/
     	ParaInfo item2=new ParaInfo();
     	item2.setDescription("city");
     	items.add(item2);
+    	/*消费类型*/
+    	ParaInfo item3=new ParaInfo();
+    	item3.setDescription("consume type");
+    	items.add(item3);
     	return items;
     }
     /*获取内置的ParaDetail*/
     public static List<ParaDetail> getParaDetails(){
     	List<ParaDetail> items=new ArrayList<ParaDetail>();
+    	/*银行类型*/
     	ParaDetail item1=new ParaDetail();
     	item1.setDescription("Bank of China");
     	item1.setInfoID(BaseField.CARD_TYPE);
@@ -100,6 +107,7 @@ public class BaseMethod {
     	item9.setDescription("Others");
     	item9.setInfoID(BaseField.CARD_TYPE);
     	items.add(item9);
+    	/*城市*/
     	ParaDetail item10=new ParaDetail();
     	item10.setDescription("suzhou");
     	item10.setInfoID(BaseField.CARD_CITY);
@@ -112,6 +120,27 @@ public class BaseMethod {
     	item12.setDescription("yaan");
     	item12.setInfoID(BaseField.CARD_CITY);
     	items.add(item12);
+    	/*消费类型*/
+    	ParaDetail item13=new ParaDetail();
+    	item13.setDescription("food");
+    	item13.setInfoID(BaseField.CONSUME_TYPE);
+    	items.add(item13);
+    	ParaDetail item14=new ParaDetail();
+    	item14.setDescription("clothing");
+    	item14.setInfoID(BaseField.CONSUME_TYPE);
+    	items.add(item14);
+    	ParaDetail item15=new ParaDetail();
+    	item15.setDescription("shelter");
+    	item15.setInfoID(BaseField.CONSUME_TYPE);
+    	items.add(item15);
+    	ParaDetail item16=new ParaDetail();
+    	item16.setDescription("transportation");
+    	item16.setInfoID(BaseField.CONSUME_TYPE);
+    	items.add(item16);
+    	ParaDetail item17=new ParaDetail();
+    	item17.setDescription("others");
+    	item17.setInfoID(BaseField.CONSUME_TYPE);
+    	items.add(item17);
     	return items;
     }
     /*根据银行卡的编号获取银行卡图标的编号*/

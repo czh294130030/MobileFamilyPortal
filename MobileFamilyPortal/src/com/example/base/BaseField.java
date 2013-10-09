@@ -39,7 +39,12 @@ public class BaseField {
 	public static final String UI_TAG="UI_TEST";
 	/*数据库测试标记*/
 	public static final String DATABASE_TAG="DATABASE_TEST";
-	/*在参数信息表中银行卡类型的编号是1银行卡城市的编号是2*/
+	/*在参数信息表中
+	 * 银行卡类型的编号是1
+	 * 银行卡城市的编号是2
+	 * 消费类型的编号是    3*/
 	public static final int CARD_TYPE=1;
 	public static final int CARD_CITY=2;
+	public static final int CONSUME_TYPE=3;
+	
 }
