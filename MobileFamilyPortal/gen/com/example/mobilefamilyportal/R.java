@@ -101,10 +101,12 @@ public final class R {
         public static final int activity_bankcardview=0x7f030002;
         public static final int activity_login=0x7f030003;
         public static final int activity_main=0x7f030004;
-        public static final int activity_userinfo=0x7f030005;
-        public static final int activity_userinfoop=0x7f030006;
-        public static final int list_bankcard=0x7f030007;
-        public static final int list_userinfo=0x7f030008;
+        public static final int activity_test=0x7f030005;
+        public static final int activity_userinfo=0x7f030006;
+        public static final int activity_userinfoop=0x7f030007;
+        public static final int control_consume=0x7f030008;
+        public static final int list_bankcard=0x7f030009;
+        public static final int list_userinfo=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f090000;
