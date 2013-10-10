@@ -37,11 +37,24 @@ public class MainActivity extends Activity {
 		/*日常消费*/
 		dailyConsumeImageButton=(ImageButton)findViewById(R.id.dailyConsumeImageButton);
 		dailyConsumeImageButton.setOnTouchListener(onMyOnTouchListener);
-		dailyConsumeImageButton.setOnClickListener(onMyClickListener);
+		dailyConsumeImageButton.setOnClickListener(new ImageButton.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//if(BaseField.LOGIN_USER_ID!=0&&BaseField.LOGIN_USER_ID!=BaseField.ADMIN_USER_ID){/*登录用户是普通用户*/
+					Intent intent=new Intent(MainActivity.this, DailyConsumeActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					startActivity(intent);
+				/*}
+				else{
+					BaseMethod.showInformation(MainActivity.this, R.string.warm_prompt, R.string.login_as_normal_user);
+				}*/
+			}
+		});
 		/*登录*/
 		loginImageButton=(ImageButton)findViewById(R.id.loginImageButton);
 		loginImageButton.setOnTouchListener(onMyOnTouchListener);
-		loginImageButton.setOnClickListener(new OnClickListener() {
+		loginImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent=new Intent(MainActivity.this,LoginActivity.class);
@@ -68,7 +81,7 @@ public class MainActivity extends Activity {
 		/*银行卡*/
 		bankImageButton=(ImageButton)findViewById(R.id.bankImageButton);
 		bankImageButton.setOnTouchListener(onMyOnTouchListener);
-		bankImageButton.setOnClickListener(new OnClickListener() {
+		bankImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(BaseField.LOGIN_USER_ID!=0&&BaseField.LOGIN_USER_ID!=BaseField.ADMIN_USER_ID){/*登录用户是普通用户*/

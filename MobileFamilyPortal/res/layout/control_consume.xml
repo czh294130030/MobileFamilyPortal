@@ -3,6 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="120dp"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:text="@string/consume_type" />
+        <Spinner
+            android:id="@+id/typeSpinner"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="120dp"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:text="@string/consume_amount" />
+
+        <EditText
+            android:id="@+id/amountEditText"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="120dp"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:text="@string/consume_description" />
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
 </LinearLayout>

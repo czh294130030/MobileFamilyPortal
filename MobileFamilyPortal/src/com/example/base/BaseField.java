@@ -22,6 +22,8 @@ public class BaseField {
 	public static final int LOGIN=3001;
 	public static final int ADD_BANK_CARD=4001;
 	public static final int EDIT_BANK_CARD=5001;
+	public static final int ADD_DAILY_CONSUME=6001;
+	public static final int EDIT_DAILY_CONSUME=7001;
 	/*ResultCode*/
 	public static final int ADD_SUCCESSFULLY=1002;
 	public static final int ADD_UNSUCCESSFULLY=1003;

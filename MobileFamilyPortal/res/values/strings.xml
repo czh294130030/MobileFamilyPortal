@@ -16,6 +16,10 @@
 	<string name="add_bank_card">ADD BANK CARD</string>
 	<string name="edit_bank_card">EDIT BANK CARD</string>
 	<string name="view_bank_card">VIEW BANK CARD</string>
+	<string name="daily_consume_info">DAILY CONSUME INFORMATION</string>
+	<string name="add_daily_consume">ADD DAILY CONSUME</string>
+	<string name="edit_daily_consume">EDIT DAILY CONSUME</string>
+	<string name="view_daily_consume">VIEW DAILY CONSUME</string>
 	<string name="login">LOGIN</string>
 	<string name="ok">OK</string>
 	<string name="cancel">Cancel</string>
@@ -26,6 +30,12 @@
 	<string name="card_type">card type</string>
 	<string name="card_city">city</string>
 	<string name="card_user">user</string>
+	<string name="consume_type">type</string>
+	<string name="consume_amount">amount</string>
+	<string name="consume_description">description</string>
+	<string name="daily_consume_amount">amount</string>
+	<string name="zero">0</string>
+	<string name="daily_consume_date">date</string>
 	<string name="warm_prompt">Warm prompt</string>
 	<string name="account_required">Please enter your account.</string>
 	<string name="username_required">Please enter your username.</string>
