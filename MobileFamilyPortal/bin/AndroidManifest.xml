@@ -15,13 +15,41 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.mobilefamilyportal.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.mobilefamilyportal.LoginActivity" 
+            	  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.UserInfoActivity" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.UserInfoActivityOP" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.BankCardActivity" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.BankCardActivityOP" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.BankCardActivityView" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.TestActivity"
+            	  android:screenOrientation="portrait">
+           	<!-- 测试 -->
+           <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        <activity android:name="com.example.mobilefamilyportal.DailyConsumeActivity" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.DailyConsumeActivityOP" 
+                  android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.mobilefamilyportal.DailyConsumeActivityView" 
+                  android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
