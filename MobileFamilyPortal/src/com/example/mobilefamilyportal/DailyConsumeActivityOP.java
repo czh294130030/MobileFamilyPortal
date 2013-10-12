@@ -1,5 +1,6 @@
 package com.example.mobilefamilyportal;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.example.mycontrol.MyConsumeControl;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.provider.CalendarContract.Instances;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -31,7 +33,6 @@ public class DailyConsumeActivityOP extends Activity {
 	private int mYear;
 	private int mMonth;
 	private int mDay;
-	private List<KeyValue> items=null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -63,17 +64,50 @@ public class DailyConsumeActivityOP extends Activity {
 				}, mYear, mMonth, mDay).show();  
 			}
 		});
-	    /*添加MyConsumeControl控件*/
+	    /* 添加MyConsumeControl控件
+	     * Activity创建添加一个不可删除的MyConsumeControl
+	     * 单击按钮添加可删除的MyConsumeControl
+	     * */
 	    ParaDetailDAL paraDetailDAL=new ParaDetailDAL(this);
-	    items=paraDetailDAL.queryKeyValueList("WHERE infoID="+BaseField.CONSUME_TYPE);
+	    final List<KeyValue> items=paraDetailDAL.queryKeyValueList("WHERE infoID="+BaseField.CONSUME_TYPE);
 	    paraDetailDAL.close();
+	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, items, false);
+	    consumeLinearLayout.addView(firstConsumeControl);
 	    addImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, items);
-				consumeLinearLayout.addView(myConsumeControl);
+				if(consumeLinearLayout.getChildCount()<items.size()){
+					MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), true);
+					consumeLinearLayout.addView(myConsumeControl);
+				}
 			}
 		});
+	}
+	/*获取没有使用的消费类型*/
+	private List<KeyValue> getTheUnusedConsumeType(List<KeyValue> items){
+		/*复制消费类型集合*/
+		List<KeyValue> unusedItems=new ArrayList<KeyValue>();
+		if(items.size()>0){
+			for (KeyValue keyValue : items) {
+				unusedItems.add(keyValue);
+			}
+		}
+		/*删除已使用的消费类型*/
+		if(consumeLinearLayout.getChildCount()>0){
+			for(int i=0; i<consumeLinearLayout.getChildCount(); i++){
+				View view=consumeLinearLayout.getChildAt(i); 
+				if (view instanceof MyConsumeControl) {
+					MyConsumeControl myConsumeControl = (MyConsumeControl) view;
+					for (KeyValue keyValue : unusedItems) {
+						if(keyValue.getKey()==myConsumeControl.typeID){
+							unusedItems.remove(keyValue);
+							break;
+						}
+					}
+				}
+			}
+		}
+		return unusedItems;
 	}
 	/*按下、松开ImageButton修改ImageButton背景颜色*/
 	private OnTouchListener onMyOnTouchListener=new OnTouchListener() {

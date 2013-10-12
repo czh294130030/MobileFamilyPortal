@@ -32,9 +32,9 @@ public class BankCardActivityOP extends Activity {
 	private Spinner cardUserSpinner=null;
 	private EditText cardNOEditText=null; 
 	private TextView titleTextView=null;
-	private long bankID=0;
-	private long cityID=0;
-	private long userID=0;
+	private int bankID=0;
+	private int cityID=0;
+	private int userID=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -75,9 +75,7 @@ public class BankCardActivityOP extends Activity {
 	    op=bundle.getInt("op");
 	    /*添加银行卡*/
 	    if(op==BaseField.ADD){
-	    	bindSpinner(Integer.parseInt(String.valueOf(bankID)), 
-	    					Integer.parseInt(String.valueOf(cityID)), 
-	    						Integer.parseInt(String.valueOf(userID)));
+	    	bindSpinner(bankID, cityID, userID);
 	    	
 	    }
 	    /*修改银行卡*/
@@ -95,9 +93,7 @@ public class BankCardActivityOP extends Activity {
 			bankID=model.getBankID();
 			cityID=model.getCityID();
 			userID=model.getUserID();
-			bindSpinner(Integer.parseInt(String.valueOf(bankID)), 
-					Integer.parseInt(String.valueOf(cityID)), 
-						Integer.parseInt(String.valueOf(userID)));
+			bindSpinner(bankID, cityID, userID);
 		}
 	}
 	/*根据银行卡编号获取银行卡*/
@@ -175,9 +171,9 @@ public class BankCardActivityOP extends Activity {
 			BankCard model=new BankCard();
 			String cardNO=cardNOEditText.getText().toString().trim();
 			model.setCardNO(cardNO);
-			model.setBankID(Integer.parseInt(String.valueOf(bankID)));
-			model.setCityID(Integer.parseInt(String.valueOf(cityID)));
-			model.setUserID(Integer.parseInt(String.valueOf(userID)));
+			model.setBankID(bankID);
+			model.setCityID(cityID);
+			model.setUserID(userID);
 			return model;
 		}else{
 			return null;
