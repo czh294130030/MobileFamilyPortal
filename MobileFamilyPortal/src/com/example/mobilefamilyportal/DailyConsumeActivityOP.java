@@ -2,6 +2,8 @@ package com.example.mobilefamilyportal;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.example.base.BaseField;
@@ -9,6 +11,7 @@ import com.example.base.BaseMethod;
 import com.example.dal.ParaDetailDAL;
 import com.example.model.KeyValue;
 import com.example.mycontrol.MyConsumeControl;
+import com.example.mycontrol.MyConsumeControl.IMyTypeTouchDown;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -17,14 +20,18 @@ import android.provider.CalendarContract.Instances;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class DailyConsumeActivityOP extends Activity {
 
+	/*绑定所有的消费类型*/
+	private List<KeyValue> items=null;
 	private TextView amountTextView=null;
 	private EditText dateEditText=null;
 	private ImageButton calendarImageButton=null;
@@ -69,20 +76,52 @@ public class DailyConsumeActivityOP extends Activity {
 	     * 单击按钮添加可删除的MyConsumeControl
 	     * */
 	    ParaDetailDAL paraDetailDAL=new ParaDetailDAL(this);
-	    final List<KeyValue> items=paraDetailDAL.queryKeyValueList("WHERE infoID="+BaseField.CONSUME_TYPE);
+	    items=paraDetailDAL.queryKeyValueList("WHERE infoID="+BaseField.CONSUME_TYPE);
 	    paraDetailDAL.close();
-	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, items, false);
+	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), false);
+	    firstConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
 	    consumeLinearLayout.addView(firstConsumeControl);
 	    addImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if(consumeLinearLayout.getChildCount()<items.size()){
 					MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), true);
+					myConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
 					consumeLinearLayout.addView(myConsumeControl);
 				}
 			}
 		});
 	}
+	/* 按下自定义consume控件触发事件
+	 * 显示没有使用的消费类型和自身消费类型
+	 * */
+	private IMyTypeTouchDown iMyTypeTouchDown=new IMyTypeTouchDown() {
+		
+		@Override
+		public void onMyTypeTouchDown(View view, ArrayAdapter<KeyValue> adapter) {
+			Spinner spinner1=(Spinner)view;
+			/*选中的消费类型*/
+			KeyValue selectedItem=(KeyValue)spinner1.getSelectedItem();
+			/*没有使用的消费类型*/
+			List<KeyValue> unusedItem=getTheUnusedConsumeType(items);
+			unusedItem.add(selectedItem);
+			/*根据Key升序*/
+			Collections.sort(unusedItem);
+			/*清空现有的消费类型*/
+			adapter.clear();
+			/* 添加未使用的消费类型
+			 * 设置spinner选中项
+			 * */
+			int position=0;
+			for (int i=0; i<unusedItem.size(); i++) {
+				if(unusedItem.get(i)==selectedItem){
+					position=i;
+				}
+				adapter.add(unusedItem.get(i));
+			}
+			spinner1.setSelection(position);
+		}
+	};
 	/*获取没有使用的消费类型*/
 	private List<KeyValue> getTheUnusedConsumeType(List<KeyValue> items){
 		/*复制消费类型集合*/
