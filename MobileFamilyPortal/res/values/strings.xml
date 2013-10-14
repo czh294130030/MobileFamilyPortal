@@ -37,11 +37,13 @@
 	<string name="zero">0</string>
 	<string name="daily_consume_date">date</string>
 	<string name="warm_prompt">Warm prompt</string>
-	<string name="account_required">Please enter your account.</string>
-	<string name="username_required">Please enter your username.</string>
-	<string name="password_required">Please enter your password.</string>
+	<string name="account_required">Account is required</string>
+	<string name="username_required">Username is required</string>
+	<string name="password_required">Password is required</string>
 	<string name="search_keyword">Please input search keyword.</string>
-	<string name="card_no_required">Please enter card no.</string>
+	<string name="card_no_required">Card no is required.</string>
+	<string name="amount_required">Amount is required.</string>
+	<string name="description_required">Description is required</string>
 	<string name="add_unsuccessfully">Failed to add.</string>
 	<string name="update_unsuccessfully">Failed to update.</string>
 	<string name="delete_unsuccessfully">Failed to delete.</string>

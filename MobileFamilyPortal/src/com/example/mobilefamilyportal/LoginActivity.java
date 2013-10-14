@@ -9,7 +9,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +26,10 @@ public class LoginActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_login);
 	    accountEditText=(EditText)findViewById(R.id.accountEditText);
+	    /*解决android edittext password hint字体不同于别的edittext hint字体*/
 	    passwordEditText=(EditText)findViewById(R.id.passwordEditText);
+	    passwordEditText.setTypeface(Typeface.DEFAULT);
+	    passwordEditText.setTransformationMethod(new PasswordTransformationMethod());
 	}
 	/*添加菜单*/
 	@Override

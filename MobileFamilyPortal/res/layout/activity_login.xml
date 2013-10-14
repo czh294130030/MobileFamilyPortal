@@ -29,6 +29,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:layout_marginRight="10dp"
+            android:hint="@string/account_required"
             android:inputType="text" >
 
             <requestFocus />
@@ -53,7 +54,8 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text|textPassword" />
+            android:hint="@string/password_required"
+            android:inputType="text"/>
 
     </LinearLayout>
 </LinearLayout>
