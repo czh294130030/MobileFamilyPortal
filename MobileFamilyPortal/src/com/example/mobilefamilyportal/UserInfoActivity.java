@@ -195,7 +195,7 @@ public class UserInfoActivity extends Activity {
 		new AlertDialog.Builder(this)
 		.setTitle(R.string.warm_prompt)
 		.setIcon(R.drawable.alert_info)
-		.setMessage(R.string.confirm_to_delete)
+		.setMessage(R.string.confirm_to_delete_userinfo)
 		.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 			
 			@Override

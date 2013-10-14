@@ -191,7 +191,7 @@ public class BankCardActivity extends Activity {
     	new AlertDialog.Builder(this)
     	.setTitle(R.string.warm_prompt)
     	.setIcon(R.drawable.alert_info)
-    	.setMessage(R.string.confirm_to_delete)
+    	.setMessage(R.string.confirm_to_delete_bankcard)
     	.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

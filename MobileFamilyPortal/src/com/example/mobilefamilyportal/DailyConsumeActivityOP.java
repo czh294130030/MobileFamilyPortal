@@ -11,10 +11,13 @@ import com.example.base.BaseMethod;
 import com.example.dal.ParaDetailDAL;
 import com.example.model.KeyValue;
 import com.example.mycontrol.MyConsumeControl;
+import com.example.mycontrol.MyConsumeControl.IMyDelete;
 import com.example.mycontrol.MyConsumeControl.IMyTypeTouchDown;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.CalendarContract.Instances;
 import android.view.MotionEvent;
@@ -78,25 +81,59 @@ public class DailyConsumeActivityOP extends Activity {
 	    ParaDetailDAL paraDetailDAL=new ParaDetailDAL(this);
 	    items=paraDetailDAL.queryKeyValueList("WHERE infoID="+BaseField.CONSUME_TYPE);
 	    paraDetailDAL.close();
-	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), false);
+	    int fid=BaseMethod.convertCalendarToInt(Calendar.getInstance());
+	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), false, fid);
+	    firstConsumeControl.setId(fid);
 	    firstConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
 	    consumeLinearLayout.addView(firstConsumeControl);
 	    addImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if(consumeLinearLayout.getChildCount()<items.size()){
-					MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), true);
+					int lid=BaseMethod.convertCalendarToInt(Calendar.getInstance());
+					MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), true, lid);
+					myConsumeControl.setId(lid);
 					myConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
+					myConsumeControl.setOnMyDeleteListener(iMyDelete);
 					consumeLinearLayout.addView(myConsumeControl);
 				}
 			}
 		});
 	}
-	/* 按下自定义consume控件触发事件
+	/* 按下自定义consume控件的删除button触发事件
+	 * 根据自定义consume控件ID将自定义consume控件删除
+	 * */
+	private IMyDelete iMyDelete=new IMyDelete() {
+		@Override
+		public void onMyDelete(int id, String type) {
+			final int controlID=id;
+			new AlertDialog.Builder(DailyConsumeActivityOP.this)
+			.setTitle(R.string.warm_prompt)
+			.setMessage(R.string.confirm_to_delete_consume)
+			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					if(consumeLinearLayout.getChildCount()>0){
+						for(int i=0; i<consumeLinearLayout.getChildCount(); i++){
+							View view=consumeLinearLayout.getChildAt(i); 
+							if (view instanceof MyConsumeControl) {
+								MyConsumeControl myConsumeControl = (MyConsumeControl) view;
+								if(myConsumeControl.getId()==controlID){
+									consumeLinearLayout.removeView(myConsumeControl);
+								}
+							}
+						}
+					}
+				}
+			})
+			.setNegativeButton(R.string.cancel, null)
+			.show();
+		}
+	};
+	/* 按下自定义consume控件的spinner触发事件
 	 * 显示没有使用的消费类型和自身消费类型
 	 * */
 	private IMyTypeTouchDown iMyTypeTouchDown=new IMyTypeTouchDown() {
-		
 		@Override
 		public void onMyTypeTouchDown(View view, ArrayAdapter<KeyValue> adapter) {
 			Spinner spinner1=(Spinner)view;

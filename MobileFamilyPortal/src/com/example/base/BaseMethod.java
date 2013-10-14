@@ -3,19 +3,35 @@ package com.example.base;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.example.mobilefamilyportal.R;
 import com.example.model.ParaDetail;
 import com.example.model.ParaInfo;
 import com.example.model.UserInfo;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.Menu;
 
+
 public class BaseMethod {
 	
+	/*将当前Calendar转化成int(int 类型的范围是 -2147483648~2147483647)*/
+	public static int convertCalendarToInt(Calendar calendar){
+		int result=0;
+		//int mYear=calendar.get(Calendar.YEAR);  
+		//int mMonth=calendar.get(Calendar.MONTH);  
+		//int mDay=calendar.get(Calendar.DAY_OF_MONTH);  
+		int mHour=calendar.get(Calendar.HOUR_OF_DAY);  
+		int mMinute=calendar.get(Calendar.MINUTE); 
+		int mSecond=calendar.get(Calendar.SECOND);
+		int mMillisecond=calendar.get(Calendar.MILLISECOND);
+		/*int 类型的范围是 -2147483648~2147483647*/
+		String str=String.valueOf(mHour)+String.valueOf(mMinute)+String.valueOf(mSecond)+String.valueOf(mMillisecond);		
+		result=Integer.parseInt(str);
+		return result;
+	}
 	/*根据年，月，日获取当前日期(October 11, 2013)*/
 	public static String getCurrentDate(int year, int month, int day){
 		String dateString="";
