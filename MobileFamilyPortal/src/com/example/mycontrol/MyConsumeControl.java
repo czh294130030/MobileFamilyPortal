@@ -28,9 +28,13 @@ public class MyConsumeControl extends LinearLayout{
 	public interface IMyDelete{
 		public void onMyDelete(int id, String type);
 	}
+	public interface IMyAmount{
+		public void onMyAmount();
+	}
 	/*初始化接口变量*/
 	IMyTypeTouchDown iMyTypeTouchDown=null;
 	IMyDelete iMyDelete=null;
+	IMyAmount iMyAmount=null;
 	/*自定义事件*/
 	public void setOnMyTypeTouchDownListener(IMyTypeTouchDown _iMyTypeTouchDown){
 		iMyTypeTouchDown=_iMyTypeTouchDown;
@@ -38,9 +42,12 @@ public class MyConsumeControl extends LinearLayout{
 	public void setOnMyDeleteListener(IMyDelete _iMyDelete){
 		iMyDelete=_iMyDelete;
 	}
+	public void setOnMyAmountListener(IMyAmount _iMyAmount){
+		iMyAmount=_iMyAmount;
+	}
 	private Spinner typeSpinner=null;
 	private ArrayAdapter<KeyValue> adapter=null;
-	private EditText amountEditText=null;
+	public EditText amountEditText=null;
 	private EditText descriptionEditText=null;
 	private Button deleteButton=null;
 	public int typeID=0;
@@ -56,8 +63,18 @@ public class MyConsumeControl extends LinearLayout{
 		LayoutInflater layoutInflater=
 				(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutInflater.inflate(R.layout.control_consume, this);
-		amountEditText=(EditText)findViewById(R.id.amountEditText);
 		descriptionEditText=(EditText)findViewById(R.id.descriptionEditText);
+		/*当amountEditText失去焦点计算总消费*/
+		amountEditText=(EditText)findViewById(R.id.amountEditText);
+		amountEditText.setOnFocusChangeListener(new EditText.OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View arg0, boolean arg1) {
+				if(!arg1){
+					iMyAmount.onMyAmount();
+				}
+			}
+		});
+		/*删除consume*/
 		deleteButton=(Button)findViewById(R.id.deleteButton);
 		if(canDelete){//当canDelete=true删除按钮显示
 			deleteButton.setVisibility(View.VISIBLE);

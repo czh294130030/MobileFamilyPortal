@@ -11,6 +11,7 @@ import com.example.base.BaseMethod;
 import com.example.dal.ParaDetailDAL;
 import com.example.model.KeyValue;
 import com.example.mycontrol.MyConsumeControl;
+import com.example.mycontrol.MyConsumeControl.IMyAmount;
 import com.example.mycontrol.MyConsumeControl.IMyDelete;
 import com.example.mycontrol.MyConsumeControl.IMyTypeTouchDown;
 
@@ -51,7 +52,7 @@ public class DailyConsumeActivityOP extends Activity {
 	    calendarImageButton.setOnTouchListener(onMyOnTouchListener);
 	    addImageButton=(ImageButton)findViewById(R.id.addImageButton);
 	    addImageButton.setOnTouchListener(onMyOnTouchListener);
-	    amountTextView=(TextView)findViewById(R.id.amountEditText);
+	    amountTextView=(TextView)findViewById(R.id.amountTextView);
 	    dateEditText=(EditText)findViewById(R.id.dateEditText);
 	    consumeLinearLayout=(LinearLayout)findViewById(R.id.consumeLinearLayout);
 	    /* 获取当前日期
@@ -85,6 +86,7 @@ public class DailyConsumeActivityOP extends Activity {
 	    MyConsumeControl firstConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), false, fid);
 	    firstConsumeControl.setId(fid);
 	    firstConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
+	    firstConsumeControl.setOnMyAmountListener(iMyAmount);
 	    consumeLinearLayout.addView(firstConsumeControl);
 	    addImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
@@ -95,21 +97,34 @@ public class DailyConsumeActivityOP extends Activity {
 					myConsumeControl.setId(lid);
 					myConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
 					myConsumeControl.setOnMyDeleteListener(iMyDelete);
+					myConsumeControl.setOnMyAmountListener(iMyAmount);
 					consumeLinearLayout.addView(myConsumeControl);
 				}
 			}
 		});
 	}
+	/* 自定义consume控件的amountEditText失去焦点触发事件
+	 * 计算消费总额
+	 * */
+	private IMyAmount iMyAmount=new IMyAmount() {
+		@Override
+		public void onMyAmount() {
+			amountTextView.setText(String.valueOf(getTotalAmount()));
+		}
+	};
 	/* 按下自定义consume控件的删除button触发事件
 	 * 根据自定义consume控件ID将自定义consume控件删除
+	 * 计算消费总额
 	 * */
 	private IMyDelete iMyDelete=new IMyDelete() {
 		@Override
 		public void onMyDelete(int id, String type) {
 			final int controlID=id;
+			String message=getResources().getString(R.string.confirm_to_delete_consume);
+			message=String.format(message, type);
 			new AlertDialog.Builder(DailyConsumeActivityOP.this)
 			.setTitle(R.string.warm_prompt)
-			.setMessage(R.string.confirm_to_delete_consume)
+			.setMessage(message)
 			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
@@ -120,6 +135,7 @@ public class DailyConsumeActivityOP extends Activity {
 								MyConsumeControl myConsumeControl = (MyConsumeControl) view;
 								if(myConsumeControl.getId()==controlID){
 									consumeLinearLayout.removeView(myConsumeControl);
+									amountTextView.setText(String.valueOf(getTotalAmount()));
 								}
 							}
 						}
@@ -159,6 +175,24 @@ public class DailyConsumeActivityOP extends Activity {
 			spinner1.setSelection(position);
 		}
 	};
+	/*获取消费总额*/
+	private double getTotalAmount(){
+		double totalAmount=0;
+		if(consumeLinearLayout.getChildCount()>0){
+			for (int i = 0; i < consumeLinearLayout.getChildCount(); i++) {
+				View view=consumeLinearLayout.getChildAt(i);
+				if(view instanceof MyConsumeControl){
+					MyConsumeControl myConsumeControl=(MyConsumeControl)view;
+					double amount=0;
+					if(!myConsumeControl.amountEditText.getText().toString().trim().equals("")){
+						amount=Double.parseDouble(myConsumeControl.amountEditText.getText().toString().trim());
+					}
+					totalAmount+=amount;
+				}
+			}
+		}
+		return totalAmount;
+	}
 	/*获取没有使用的消费类型*/
 	private List<KeyValue> getTheUnusedConsumeType(List<KeyValue> items){
 		/*复制消费类型集合*/
