@@ -118,13 +118,16 @@ public class DailyConsumeActivityOP extends Activity {
 	};
 	/*调整用户输入的amount*/
 	private void adjustAmount(EditText editText){
-		double amount=0;
-		try {
-			amount=Double.parseDouble(editText.getText().toString().trim());
-		} catch (Exception e) {
-			amount=0;
+		String amountString=editText.getText().toString().trim();
+		if(!amountString.equals("")){
+			double amount=0;
+			try {
+				amount=Double.parseDouble(amountString);
+			} catch (Exception e) {
+				amount=0;
+			}
+			editText.setText(String.valueOf(amount));
 		}
-		editText.setText(String.valueOf(amount));
 	}
 	/* 按下自定义consume控件的删除button触发事件
 	 * 根据自定义consume控件ID将自定义consume控件删除
