@@ -35,7 +35,7 @@ public class BaseMethod {
 	/*根据年，月，日获取当前日期(October 11, 2013)*/
 	public static String getCurrentDate(int year, int month, int day){
 		String dateString="";
-		dateString=convertMonth(month)+" "+day+", "+year;
+		dateString=year+"-"+(month+1)+"-"+day;
 		return dateString;
 	}
 	/*获取当前月(October)*/
@@ -43,40 +43,40 @@ public class BaseMethod {
 		String monthString="";
 		switch (month) {
 		case 0:
-			monthString="January";
+			monthString="Jan";
 			break;
 		case 1:
-			monthString="February";
+			monthString="Feb";
 			break;
 		case 2:
-			monthString="March";
+			monthString="Mar";
 			break;
 		case 3:
-			monthString="April";
+			monthString="Apr";
 			break;
 		case 4:
 			monthString="May";
 			break;
 		case 5:
-			monthString="June";
+			monthString="Jun";
 			break;
 		case 6:
-			monthString="July";
+			monthString="Jul";
 			break;
 		case 7:
-			monthString="August";
+			monthString="Aug";
 			break;
 		case 8:
-			monthString="Sepetember";
+			monthString="Sep";
 			break;
 		case 9:
-			monthString="October";
+			monthString="Oct";
 			break;
 		case 10:
-			monthString="Novenber";
+			monthString="Nov";
 			break;
 		case 11:
-			monthString="December";
+			monthString="Dec";
 			break;
 		default:
 			break;

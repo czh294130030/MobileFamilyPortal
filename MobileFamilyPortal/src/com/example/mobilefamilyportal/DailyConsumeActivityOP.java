@@ -2,25 +2,29 @@ package com.example.mobilefamilyportal;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
+import com.example.dal.ConsumeDAL;
+import com.example.dal.DailyConsumeDAL;
 import com.example.dal.ParaDetailDAL;
+import com.example.model.Consume;
+import com.example.model.DailyConsume;
 import com.example.model.KeyValue;
 import com.example.mycontrol.MyConsumeControl;
 import com.example.mycontrol.MyConsumeControl.IMyAmount;
 import com.example.mycontrol.MyConsumeControl.IMyDelete;
 import com.example.mycontrol.MyConsumeControl.IMyTypeTouchDown;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.CalendarContract.Instances;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -34,6 +38,7 @@ import android.widget.TextView;
 
 public class DailyConsumeActivityOP extends Activity {
 
+	private int op;
 	/*绑定所有的消费类型*/
 	private List<KeyValue> items=null;
 	private TextView amountTextView=null;
@@ -55,14 +60,18 @@ public class DailyConsumeActivityOP extends Activity {
 	    amountTextView=(TextView)findViewById(R.id.amountTextView);
 	    dateEditText=(EditText)findViewById(R.id.dateEditText);
 	    consumeLinearLayout=(LinearLayout)findViewById(R.id.consumeLinearLayout);
-	    /* 获取当前日期
-	     * 默认显示当前日期
-	     * 选择日期按钮修改显示日期
-	     * */
-		Calendar calendar=Calendar.getInstance();
-		mYear=calendar.get(Calendar.YEAR);
-		mMonth=calendar.get(Calendar.MONTH);
-		mDay=calendar.get(Calendar.DAY_OF_MONTH);
+	    /*获取操作*/
+	    Bundle bundle=this.getIntent().getExtras();
+	    op=bundle.getInt("op");
+	    if(op==BaseField.ADD){//添加日常消费，获取当前日期
+	    	Calendar calendar=Calendar.getInstance();
+			mYear=calendar.get(Calendar.YEAR);
+			mMonth=calendar.get(Calendar.MONTH);
+			mDay=calendar.get(Calendar.DAY_OF_MONTH);
+	    }else{//修改日常消费，获取修改的日期
+	    	
+	    }
+	    //页面加载填充日期显示
 		dateEditText.setText(BaseMethod.getCurrentDate(mYear, mMonth, mDay));
 	    calendarImageButton.setOnClickListener(new ImageButton.OnClickListener() {
 			@Override
@@ -71,6 +80,9 @@ public class DailyConsumeActivityOP extends Activity {
 					@Override  
 					public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {  
 						dateEditText.setText(BaseMethod.getCurrentDate(year, monthOfYear, dayOfMonth));  
+						mYear=year;
+						mMonth=monthOfYear;
+						mDay=dayOfMonth;
 					}  
 				}, mYear, mMonth, mDay).show();  
 			}
@@ -226,7 +238,7 @@ public class DailyConsumeActivityOP extends Activity {
 				if (view instanceof MyConsumeControl) {
 					MyConsumeControl myConsumeControl = (MyConsumeControl) view;
 					for (KeyValue keyValue : unusedItems) {
-						if(keyValue.getKey()==myConsumeControl.typeID){
+						if(keyValue.getKey()==((KeyValue)myConsumeControl.typeSpinner.getSelectedItem()).getKey()){
 							unusedItems.remove(keyValue);
 							break;
 						}
@@ -248,4 +260,153 @@ public class DailyConsumeActivityOP extends Activity {
 			return false;
 		}
 	};
+	
+	/*添加菜单*/
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu){
+		BaseMethod.setIconEnable(menu, true);//解决android 4.0显示图片
+		menu.add(0, BaseField.OK, 0, R.string.ok).setIcon(R.drawable.menu_ok);
+		menu.add(0, BaseField.CANCEL, 0, R.string.cancel).setIcon(R.drawable.menu_cancel);
+		return super.onCreateOptionsMenu(menu);
+	}
+	/*菜单触发事件*/
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		switch (item.getItemId()) {
+		case BaseField.OK:
+			if(op==BaseField.ADD){//添加日常消费
+				addDailyConsume();
+			}else{//修改日常消费
+				updateDailyConsume();
+			}
+			break;
+		case BaseField.CANCEL:
+			unsaveChanges();
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
+	/*添加日常消费*/
+	private void addDailyConsume(){
+		DailyConsume model=getDailyConsumeFromInput();
+		if(model!=null){//用户添加的数据无误
+			if(getDailyConsume(model.getDate())==null){//选择的日期未添加日常消费
+				DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
+				long dailyID=dailyConsumeDAL.add(model);
+				dailyConsumeDAL.close();
+				if(dailyID>0){//日常消费info添加成功
+					int counter=0;
+					for (Consume item : model.getConsumeList()) {
+						item.setDailyID(Integer.parseInt(String.valueOf(dailyID)));
+						ConsumeDAL consumeDAL=new ConsumeDAL(DailyConsumeActivityOP.this);
+						long result=consumeDAL.add(item);
+						consumeDAL.close();
+						if(result>0){
+							counter++;
+						}
+					}
+					if(counter==model.getConsumeList().size()){//日常消费detail添加成功
+						Intent intent=new Intent();
+						setResult(BaseField.ADD_SUCCESSFULLY, intent);
+						this.finish();
+					}else {
+						BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.add_unsuccessfully);
+					}
+				}else{
+					BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.add_unsuccessfully);
+				}
+			}else{
+				BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.daily_consume_exsit);
+			}
+		}
+	}
+	/*根据日期获取日常消费*/
+	private DailyConsume getDailyConsume(String date){
+		DailyConsume item=new DailyConsume();
+		item.setDate(date);
+		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
+		DailyConsume model=dailyConsumeDAL.queryModel(item);
+		dailyConsumeDAL.close();
+		return model;
+	}
+	/*修改日常消费*/
+	private void updateDailyConsume(){
+		DailyConsume item=getDailyConsumeFromInput();
+	}
+	/*获取用户输入的日常消费*/
+	private DailyConsume getDailyConsumeFromInput(){
+		if(validateDailyConsume()){
+			List<Consume> consumeList=new ArrayList<Consume>();
+			if(consumeLinearLayout.getChildCount()>0){
+				for(int i=0; i<consumeLinearLayout.getChildCount(); i++){
+					View view =consumeLinearLayout.getChildAt(i);
+					if(view instanceof MyConsumeControl){
+						Consume consumeItem=new Consume();
+						MyConsumeControl myConsumeControl=(MyConsumeControl) view;
+						consumeItem.setAmount(Double.parseDouble(myConsumeControl.amountEditText.getText().toString().trim()));
+						consumeItem.setDescription(myConsumeControl.descriptionEditText.getText().toString().trim());
+						consumeItem.setTypeID(((KeyValue)myConsumeControl.typeSpinner.getSelectedItem()).getKey());
+						consumeList.add(consumeItem);
+					}
+				}
+			}
+			DailyConsume item=new DailyConsume();
+			item.setAmount(Double.parseDouble(amountTextView.getText().toString().trim()));
+			item.setDate(dateEditText.getText().toString().trim());
+			item.setConsumeList(consumeList);
+			return item;
+		}else{
+			return null;
+		}
+	}
+	/*判断用户输入*/
+	private boolean validateDailyConsume(){
+		if(consumeLinearLayout.getChildCount()>0){
+			for(int i=0; i<consumeLinearLayout.getChildCount(); i++){
+				View view=consumeLinearLayout.getChildAt(i); 
+				if (view instanceof MyConsumeControl) {
+					MyConsumeControl myConsumeControl = (MyConsumeControl) view;
+					String amount=myConsumeControl.amountEditText.getText().toString().trim();
+					if(amount.equals("")){//未输入消费金额
+						BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.amount_required);
+						myConsumeControl.amountEditText.requestFocus();
+						return false;
+					}
+					String description=myConsumeControl.descriptionEditText.getText().toString().trim();
+					if(description.equals("")){//未输入消费描述
+						BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.description_required);
+						myConsumeControl.descriptionEditText.requestFocus();
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	/*关闭Activity*/ 
+	@Override   
+    public boolean onKeyDown(int keyCode, KeyEvent event){  
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+        	unsaveChanges();
+        }  
+        return super.onKeyDown(keyCode, event);  
+    }
+	/*不保存跳转到用户信息页面*/
+	private void unsaveChanges(){
+		new AlertDialog.Builder(this)
+    	.setTitle(R.string.warm_prompt)
+    	.setIcon(R.drawable.alert_info)
+    	.setMessage(R.string.unsave_changes)
+    	.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent cancelIntent=new Intent();
+				setResult(BaseField.ADD_CANCEL, cancelIntent);
+	            finish();  
+			}
+		}).setNegativeButton(R.string.cancel, null)
+		.show();
+	}
 }

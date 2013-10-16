@@ -4,19 +4,14 @@ import java.util.List;
 
 import com.example.mobilefamilyportal.R;
 import com.example.model.KeyValue;
-
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -45,12 +40,11 @@ public class MyConsumeControl extends LinearLayout{
 	public void setOnMyAmountListener(IMyAmount _iMyAmount){
 		iMyAmount=_iMyAmount;
 	}
-	private Spinner typeSpinner=null;
+	public Spinner typeSpinner=null;
 	private ArrayAdapter<KeyValue> adapter=null;
 	public EditText amountEditText=null;
-	private EditText descriptionEditText=null;
+	public EditText descriptionEditText=null;
 	private Button deleteButton=null;
-	public int typeID=0;
 	private int controlID=0;
 	public MyConsumeControl(Context context){
 		super(context);
@@ -102,15 +96,6 @@ public class MyConsumeControl extends LinearLayout{
 				}
 				return false;
 			}
-		});
-		/*选择消费类型*/
-		typeSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-			public void onItemSelected(AdapterView<?> parent, View view, int position, long id){ 
-				typeID=((KeyValue)parent.getSelectedItem()).getKey();		
-	    	}
-	    	@Override  
-	    	public void onNothingSelected(AdapterView<?> arg0) {  
-	    	} 
 		});
 		bind(context, items);
 	}

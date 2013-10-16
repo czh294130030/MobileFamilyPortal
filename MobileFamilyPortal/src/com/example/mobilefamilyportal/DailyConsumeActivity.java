@@ -2,23 +2,89 @@ package com.example.mobilefamilyportal;
 
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
-
+import com.example.dal.DailyConsumeDAL;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 public class DailyConsumeActivity extends Activity {
 
 	/*用来控制菜单来是添加还是修改、删除，初始化默认添加菜单*/
 	private boolean isAdd=true;
 	private String TAG="MENU_DAILY_CONSUME";
+	private EditText searchEditText=null;
+	private ImageButton clearImageButton=null;
+	private ListView dailyconsumeListView=null;
+	private Cursor cursor=null;
+	private SimpleCursorAdapter adapter=null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_dailyconsume);
+	    dailyconsumeListView=(ListView)findViewById(R.id.dailyconsumeListView);
+	    /*清空搜索条件*/
+	    clearImageButton=(ImageButton)findViewById(R.id.clearImageButton);
+	    clearImageButton.setOnClickListener(new ImageButton.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				searchEditText.setText("");
+			}
+		});
+	    /*修改EditText时重新绑定数据和显示（隐藏）清空按钮*/
+	    searchEditText=(EditText)findViewById(R.id.searchEditText);
+	    searchEditText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				bind();
+			}
+			
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void afterTextChanged(Editable s) {
+				String searchString=searchEditText.getText().toString().trim();
+				if(searchString.equals("")){
+					clearImageButton.setVisibility(View.INVISIBLE);
+				}else{
+					clearImageButton.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	    bind();
+	}
+	/*绑定银行卡信息*/
+	@SuppressWarnings("deprecation")
+	private void bind(){
+		String searchString=searchEditText.getText().toString().trim();
+		String whereString="";
+		if(!searchString.equals("")){
+			whereString="where date like '%"+searchString+"%'";
+		}
+		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivity.this);
+		cursor=dailyConsumeDAL.query(whereString);
+		adapter=new SimpleCursorAdapter(
+				this,
+				R.layout.list_dailyconsume,
+				cursor,
+				new String[]{"amount","date"},
+				new int[]{R.id.amountTextView,R.id.dateTextView});
+		dailyconsumeListView.setAdapter(adapter);
+		dailyConsumeDAL.close();
 	}
 	/* 1. 当手机(Emulator)sdk版本>=11（如我的手机Android Version是4.1.1, Build.VERSION.SDK_INT是16） 
      * 在创建Activity时触发。 
@@ -93,4 +159,16 @@ public class DailyConsumeActivity extends Activity {
 		}
 		return true;
 	}
+	/*当B Activity finish时触发获取resultCode和回传参数*/
+    @Override    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){ 
+    	/*添加日常消费成功*/
+    	if(requestCode==BaseField.ADD_DAILY_CONSUME&&resultCode==BaseField.ADD_SUCCESSFULLY){
+    		bind();
+    	}
+    	/*修改日常消费成功*/
+    	if(requestCode==BaseField.EDIT_DAILY_CONSUME&&resultCode==BaseField.UPDATE_SUCCESSFULLY){
+    		bind();
+    	}
+    }
 }

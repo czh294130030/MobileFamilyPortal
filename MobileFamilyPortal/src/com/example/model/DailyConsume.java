@@ -1,10 +1,13 @@
 package com.example.model;
 
+import java.util.List;
+
 public class DailyConsume {
 	
 	private int dailyID;
 	private double amount;
 	private String date;
+	private List<Consume> consumeList;
 	
 	public int getDailyID() {
 		return dailyID;
@@ -23,5 +26,11 @@ public class DailyConsume {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public List<Consume> getConsumeList() {
+		return consumeList;
+	}
+	public void setConsumeList(List<Consume> consumeList) {
+		this.consumeList = consumeList;
 	}
 }

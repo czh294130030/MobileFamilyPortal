@@ -169,6 +169,7 @@ public final class R {
         public static final int consume_type=0x7f07001e;
         public static final int daily_consume_amount=0x7f070021;
         public static final int daily_consume_date=0x7f070023;
+        public static final int daily_consume_exsit=0x7f070045;
         public static final int daily_consume_info=0x7f070010;
         public static final int delete_item=0x7f070007;
         public static final int delete_unsuccessfully=0x7f07002e;

@@ -16,8 +16,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -32,51 +30,20 @@ public class BankCardActivityOP extends Activity {
 	private Spinner cardUserSpinner=null;
 	private EditText cardNOEditText=null; 
 	private TextView titleTextView=null;
-	private int bankID=0;
-	private int cityID=0;
-	private int userID=0;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_bankcardop);
 	    titleTextView=(TextView)findViewById(R.id.titleTextView);
 	    cardNOEditText=(EditText)findViewById(R.id.cardNOEditText);
-	    /*获取选中的银行ID*/
 	    cardTypeSpinner=(Spinner)findViewById(R.id.cardTypeSpinner);
-	    cardTypeSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-	    	public void onItemSelected(AdapterView<?> parent, View view, int position, long id){ 
-	    		bankID=((KeyValue)parent.getSelectedItem()).getKey();		
-	    	}
-	    	@Override  
-	    	public void onNothingSelected(AdapterView<?> arg0) {  
-	    	} 
-		});
-	    /*获取选中的城市ID*/
 	    cardCitySpinner=(Spinner)findViewById(R.id.cardCitySpinner);
-	    cardCitySpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-	    	public void onItemSelected(AdapterView<?> parent, View view, int position, long id){ 
-	    		cityID=((KeyValue)parent.getSelectedItem()).getKey();		
-	    	}
-	    	@Override  
-	    	public void onNothingSelected(AdapterView<?> arg0) {  
-	    	} 
-		});
-	    /*获取选中的用户ID*/
 	    cardUserSpinner=(Spinner)findViewById(R.id.cardUserSpinner);
-	    cardUserSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-	    	public void onItemSelected(AdapterView<?> parent, View view, int position, long id){ 
-	    		userID=((KeyValue)parent.getSelectedItem()).getKey();		
-	    	}
-	    	@Override  
-	    	public void onNothingSelected(AdapterView<?> arg0) {  
-	    	} 
-		});
 	    Bundle bundle=this.getIntent().getExtras();
 	    op=bundle.getInt("op");
 	    /*添加银行卡*/
 	    if(op==BaseField.ADD){
-	    	bindSpinner(bankID, cityID, userID);
-	    	
+	    	bindSpinner(0, 0, 0);
 	    }
 	    /*修改银行卡*/
 	    if(op==BaseField.EDIT){
@@ -90,10 +57,7 @@ public class BankCardActivityOP extends Activity {
 		BankCard model=getBankCard(_id);
 		if(model!=null){
 			cardNOEditText.setText(model.getCardNO());
-			bankID=model.getBankID();
-			cityID=model.getCityID();
-			userID=model.getUserID();
-			bindSpinner(bankID, cityID, userID);
+			bindSpinner(model.getBankID(), model.getCityID(), model.getUserID());
 		}
 	}
 	/*根据银行卡编号获取银行卡*/
@@ -171,9 +135,9 @@ public class BankCardActivityOP extends Activity {
 			BankCard model=new BankCard();
 			String cardNO=cardNOEditText.getText().toString().trim();
 			model.setCardNO(cardNO);
-			model.setBankID(bankID);
-			model.setCityID(cityID);
-			model.setUserID(userID);
+			model.setBankID(((KeyValue)cardTypeSpinner.getSelectedItem()).getKey());
+			model.setCityID(((KeyValue)cardCitySpinner.getSelectedItem()).getKey());
+			model.setUserID(((KeyValue)cardUserSpinner.getSelectedItem()).getKey());
 			return model;
 		}else{
 			return null;
