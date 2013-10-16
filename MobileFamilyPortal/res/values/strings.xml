@@ -53,7 +53,7 @@
 	<string name="login_as_normal_user">You have no authority. Please login as normal user.</string>
 	<string name="confirm_to_delete_userinfo">Confirm to delete user info?</string>
 	<string name="confirm_to_delete_bankcard">Confirm to delete bank card?</string>
-	<string name="confirm_to_delete_consume">Confirm to delete %1$s?</string>
+	<string name="confirm_to_delete_consume">Confirm to delete \'%1$s\'?</string>
 	<string name="module_build">This module is being build.</string>
 	<string name="unsave_changes">Unsaved changes will be lost.</string>
 	<string name="leave_login">Do you want to leave login page?</string>
@@ -68,4 +68,5 @@
 	<string name="china_nerchants_bank">China Merchants Bank</string>
 	<string name="icbc">Industrial and Commercial Bank of China</string>
 	<string name="other_banks">Other Banks</string>
+	<string name="all_types_are_used">All consume types are used.</string>
 </resources>

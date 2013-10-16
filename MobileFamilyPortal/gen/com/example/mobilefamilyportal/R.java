@@ -143,6 +143,7 @@ public final class R {
         public static final int add_item=0x7f070005;
         public static final int add_unsuccessfully=0x7f07002c;
         public static final int add_userinfo=0x7f07000b;
+        public static final int all_types_are_used=0x7f070044;
         public static final int amount_required=0x7f07002a;
         public static final int app_name=0x7f070000;
         public static final int bank_card_info=0x7f07000a;

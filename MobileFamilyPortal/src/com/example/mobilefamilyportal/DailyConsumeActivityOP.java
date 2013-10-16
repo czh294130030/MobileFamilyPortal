@@ -99,6 +99,8 @@ public class DailyConsumeActivityOP extends Activity {
 					myConsumeControl.setOnMyDeleteListener(iMyDelete);
 					myConsumeControl.setOnMyAmountListener(iMyAmount);
 					consumeLinearLayout.addView(myConsumeControl);
+				}else{//所有的consume type被用完
+					BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.all_types_are_used);
 				}
 			}
 		});
@@ -107,11 +109,23 @@ public class DailyConsumeActivityOP extends Activity {
 	 * 计算消费总额
 	 * */
 	private IMyAmount iMyAmount=new IMyAmount() {
+		
 		@Override
-		public void onMyAmount() {
+		public void onMyAmount(EditText editText) {
+			adjustAmount(editText);
 			amountTextView.setText(String.valueOf(getTotalAmount()));
 		}
 	};
+	/*调整用户输入的amount*/
+	private void adjustAmount(EditText editText){
+		double amount=0;
+		try {
+			amount=Double.parseDouble(editText.getText().toString().trim());
+		} catch (Exception e) {
+			amount=0;
+		}
+		editText.setText(String.valueOf(amount));
+	}
 	/* 按下自定义consume控件的删除button触发事件
 	 * 根据自定义consume控件ID将自定义consume控件删除
 	 * 计算消费总额

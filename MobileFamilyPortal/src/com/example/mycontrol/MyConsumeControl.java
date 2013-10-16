@@ -29,7 +29,7 @@ public class MyConsumeControl extends LinearLayout{
 		public void onMyDelete(int id, String type);
 	}
 	public interface IMyAmount{
-		public void onMyAmount();
+		public void onMyAmount(EditText editText);
 	}
 	/*初始化接口变量*/
 	IMyTypeTouchDown iMyTypeTouchDown=null;
@@ -70,7 +70,8 @@ public class MyConsumeControl extends LinearLayout{
 			@Override
 			public void onFocusChange(View arg0, boolean arg1) {
 				if(!arg1){
-					iMyAmount.onMyAmount();
+					EditText editText=(EditText)arg0;
+					iMyAmount.onMyAmount(editText);
 				}
 			}
 		});
