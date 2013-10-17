@@ -392,7 +392,10 @@ public class DailyConsumeActivityOP extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event){  
         if(keyCode==KeyEvent.KEYCODE_BACK){
         	unsaveChanges();
-        }  
+        }
+        if(keyCode==KeyEvent.KEYCODE_MENU){
+        	dateEditText.requestFocus();
+        }
         return super.onKeyDown(keyCode, event);  
     }
 	/*不保存跳转到用户信息页面*/
