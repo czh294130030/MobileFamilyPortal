@@ -1,5 +1,8 @@
 package com.example.dal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.base.BaseField;
 import com.example.model.Consume;
 import android.content.ContentValues;
@@ -111,6 +114,31 @@ public class ConsumeDAL extends SQLiteOpenHelper {
 				model.setDailyID(cursor.getInt(cursor.getColumnIndex("dailyID")));
 			}
 			return model;
+		}else{
+			return null;
+		}
+	}
+	/*根据dailyID获取Consume*/
+	public List<Consume> queryList(int dailyID){
+		List<Consume> list=new ArrayList<Consume>();
+		Log.i(BaseField.DATABASE_TAG, "SELECT Multiple "+BaseField.TABLE_NAME_CONSUME);
+		String sql="SELECT consumeID as _id, description, amount, typeID, dailyID FROM "+BaseField.TABLE_NAME_CONSUME+" WHERE 1=1";
+		if(dailyID!=0){
+			sql+=" and dailyID="+dailyID;
+		}
+		Cursor cursor=db.rawQuery(sql, null);
+		if(cursor.getCount()>0)
+		{
+			while(cursor.moveToNext()){
+				Consume model=new Consume();
+				model.setConsumeID(cursor.getInt(cursor.getColumnIndex("_id")));
+				model.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+				model.setAmount(cursor.getDouble(cursor.getColumnIndex("amount")));
+				model.setTypeID(cursor.getInt(cursor.getColumnIndex("typeID")));
+				model.setDailyID(cursor.getInt(cursor.getColumnIndex("dailyID")));
+				list.add(model);
+			}
+			return list;
 		}else{
 			return null;
 		}

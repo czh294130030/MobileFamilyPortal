@@ -69,5 +69,5 @@
 	<string name="icbc">Industrial and Commercial Bank of China</string>
 	<string name="other_banks">Other Banks</string>
 	<string name="all_types_are_used">All consume types are used.</string>
-	<string name="daily_consume_exsit">Daily consume exist, Please select another day.</string>
+	<string name="daily_consume_exsit">There is existed daily consume on this day.</string>
 </resources>

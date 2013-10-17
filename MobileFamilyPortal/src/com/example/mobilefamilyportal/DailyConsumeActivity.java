@@ -3,9 +3,12 @@ package com.example.mobilefamilyportal;
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
 import com.example.dal.DailyConsumeDAL;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.text.Editable;
@@ -14,14 +17,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class DailyConsumeActivity extends Activity {
 
+	/*判断是否是第一次触发长按userInfoListView中的Item*/
+	private boolean isFirstTrigger=true; 
 	/*用来控制菜单来是添加还是修改、删除，初始化默认添加菜单*/
 	private boolean isAdd=true;
+	/*存放删除或者修改日常消费的编号*/
+	private int id=0;
 	private String TAG="MENU_DAILY_CONSUME";
 	private EditText searchEditText=null;
 	private ImageButton clearImageButton=null;
@@ -32,7 +40,22 @@ public class DailyConsumeActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_dailyconsume);
+	    /*长按ListView item触发事件*/
 	    dailyconsumeListView=(ListView)findViewById(R.id.dailyconsumeListView);
+	    dailyconsumeListView.setOnItemLongClickListener(new ListView.OnItemLongClickListener() {
+	    	public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long arg3) {
+	    		/*获取删除或者修改日常消费的编号*/
+	    		id=Integer.parseInt(String.valueOf(parent.getItemIdAtPosition(position)));
+	    		/*显示修改，删除，查看菜单*/
+	    		isAdd=false;
+	    		if (Build.VERSION.SDK_INT >= 11&&isFirstTrigger) { 
+	    			menuRefresh();
+	    			isFirstTrigger=false;
+	    		}
+	    		openOptionsMenu();
+	    		return true;
+	    	}
+		});
 	    /*清空搜索条件*/
 	    clearImageButton=(ImageButton)findViewById(R.id.clearImageButton);
 	    clearImageButton.setOnClickListener(new ImageButton.OnClickListener() {
@@ -67,6 +90,13 @@ public class DailyConsumeActivity extends Activity {
 		});
 	    bind();
 	}
+	/*调用invalidateOptionsMenu会重新触发onCreateOptionsMenu和onPrepareOptionsMenu方法*/  
+    @SuppressLint("NewApi")  
+    public void menuRefresh() {  
+        if (Build.VERSION.SDK_INT >= 11) {//手机或者Emulator的sdk版本  
+            invalidateOptionsMenu();  
+        }  
+    }
 	/*绑定银行卡信息*/
 	@SuppressWarnings("deprecation")
 	private void bind(){
@@ -141,12 +171,12 @@ public class DailyConsumeActivity extends Activity {
 			startActivityForResult(intent, BaseField.ADD_DAILY_CONSUME);
 			break;}
 		case BaseField.EDIT:{
-    		/*Intent intent=new Intent(DailyConsumeActivity.this, UserInfoActivityOP.class);
+    		Intent intent=new Intent(DailyConsumeActivity.this, DailyConsumeActivityOP.class);
     		Bundle bundle=new Bundle();
     		bundle.putInt("op", BaseField.EDIT);
     		bundle.putInt("id", id);
     		intent.putExtras(bundle);
-    		startActivityForResult(intent, BaseField.EDIT_USERINFO);*/
+    		startActivityForResult(intent, BaseField.EDIT_DAILY_CONSUME);
 			break;}
 		case BaseField.VIEW:{
 			break;

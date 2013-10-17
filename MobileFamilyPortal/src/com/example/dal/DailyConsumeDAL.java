@@ -1,6 +1,7 @@
 package com.example.dal;
 
 import com.example.base.BaseField;
+import com.example.model.Consume;
 import com.example.model.DailyConsume;
 import android.content.ContentValues;
 import android.content.Context;
@@ -45,9 +46,25 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		Log.i(BaseField.DATABASE_TAG, "OPEN DATABASE");
 		super.onOpen(db1);
 	}
-
-	/*增加*/
-	public long add(DailyConsume model) {
+	/*添加日常消费Info和Details*/
+	public boolean addDailyConsume(DailyConsume model){
+    	long dailyID=add(model);
+    	if(dailyID==-1){//添加日常消费Info失败
+    		return false;
+    	}
+    	if(model.getConsumeList().size()>0){
+    		for (Consume consume : model.getConsumeList()) {
+				consume.setDailyID(Integer.parseInt(String.valueOf(dailyID)));
+				long consumeID=add(consume);
+				if(consumeID==-1){//添加日常消费Detail失败
+					return false;
+				}
+			}
+		}
+    	return true;
+	}
+	/*添加日常消费Info*/
+	private long add(DailyConsume model) {
 		/* 将新增的值放入ContentValues */
 		ContentValues cv = new ContentValues();
 		cv.put("amount", model.getAmount());
@@ -56,7 +73,18 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		Log.i(BaseField.DATABASE_TAG, "ADD " + rowsaffected + " "+BaseField.TABLE_NAME_DAILY_CONSUME);
 		return rowsaffected;
 	}
-
+	/*增加日常消费Detail*/
+	private long add(Consume model) {
+		/* 将新增的值放入ContentValues */
+		ContentValues cv = new ContentValues();
+		cv.put("description", model.getDescription());
+		cv.put("amount", model.getAmount());
+		cv.put("typeID", model.getTypeID());
+		cv.put("dailyID", model.getDailyID());
+		long rowsaffected = db.insert(BaseField.TABLE_NAME_CONSUME, null, cv);
+		Log.i(BaseField.DATABASE_TAG, "ADD " + rowsaffected + " "+BaseField.TABLE_NAME_CONSUME);
+		return rowsaffected;
+	}
 	/*删除*/
 	public int delete(int id) {
 		String[] whereArgs = { Integer.toString(id) };
