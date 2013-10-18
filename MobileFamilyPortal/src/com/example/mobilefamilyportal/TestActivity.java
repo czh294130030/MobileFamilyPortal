@@ -29,7 +29,7 @@ public class TestActivity extends Activity {
 		
 		/*后台添加自定义控件*/
 		testLinearLayout=(LinearLayout)findViewById(R.id.testLinearLayout);
-		MyConsumeControl myConsumeControl=new MyConsumeControl(TestActivity.this, null, items, false, 0);
+		MyConsumeControl myConsumeControl=new MyConsumeControl(TestActivity.this, null, items, false, 0, null);
 		testLinearLayout.addView(myConsumeControl);
 	}
 }

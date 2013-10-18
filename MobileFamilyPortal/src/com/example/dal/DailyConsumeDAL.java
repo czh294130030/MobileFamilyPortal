@@ -1,5 +1,8 @@
 package com.example.dal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.base.BaseField;
 import com.example.model.Consume;
 import com.example.model.DailyConsume;
@@ -115,9 +118,22 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		}
 		return db.rawQuery(sqlString, null);
 	}
-	
-	/*根据条件获取Model*/
-	public DailyConsume queryModel(DailyConsume item){
+	/*根据条件获取日常消费的Info和Details*/
+	public DailyConsume queryDailyConsume(DailyConsume item, boolean isNeedDetails){
+		DailyConsume model=queryModel(item);
+		if(model==null){//获取日常消费Info失败
+			return null;
+		}
+		if(isNeedDetails){//需要获取日常消费Details
+			List<Consume> list=queryList(model.getDailyID());
+			model.setConsumeList(list);
+			return model;
+		}else{
+			return model;
+		}
+	}
+	/*根据条件获取日常消费的Info*/
+	private DailyConsume queryModel(DailyConsume item){
 		DailyConsume model=new DailyConsume();
 		Log.i(BaseField.DATABASE_TAG, "SELECT One "+BaseField.TABLE_NAME_DAILY_CONSUME);
 		String sql="SELECT dailyID as _id, amount, date FROM "+BaseField.TABLE_NAME_DAILY_CONSUME+" WHERE 1=1";
@@ -136,6 +152,31 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 				model.setDate(cursor.getString(cursor.getColumnIndex("date")));
 			}
 			return model;
+		}else{
+			return null;
+		}
+	}
+	/*根据条件获取日常消费的Details*/
+	private List<Consume> queryList(int dailyID){
+		List<Consume> list=new ArrayList<Consume>();
+		Log.i(BaseField.DATABASE_TAG, "SELECT Multiple "+BaseField.TABLE_NAME_CONSUME);
+		String sql="SELECT consumeID as _id, description, amount, typeID, dailyID FROM "+BaseField.TABLE_NAME_CONSUME+" WHERE 1=1";
+		if(dailyID!=0){
+			sql+=" and dailyID="+dailyID;
+		}
+		Cursor cursor=db.rawQuery(sql, null);
+		if(cursor.getCount()>0)
+		{
+			while(cursor.moveToNext()){
+				Consume model=new Consume();
+				model.setConsumeID(cursor.getInt(cursor.getColumnIndex("_id")));
+				model.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+				model.setAmount(cursor.getDouble(cursor.getColumnIndex("amount")));
+				model.setTypeID(cursor.getInt(cursor.getColumnIndex("typeID")));
+				model.setDailyID(cursor.getInt(cursor.getColumnIndex("dailyID")));
+				list.add(model);
+			}
+			return list;
 		}else{
 			return null;
 		}

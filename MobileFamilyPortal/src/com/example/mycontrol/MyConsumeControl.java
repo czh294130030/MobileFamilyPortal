@@ -3,6 +3,7 @@ package com.example.mycontrol;
 import java.util.List;
 
 import com.example.mobilefamilyportal.R;
+import com.example.model.Consume;
 import com.example.model.KeyValue;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -49,7 +50,7 @@ public class MyConsumeControl extends LinearLayout{
 	public MyConsumeControl(Context context){
 		super(context);
 	}
-	public MyConsumeControl(Context context, AttributeSet attr, List<KeyValue> items, boolean canDelete, int id){
+	public MyConsumeControl(Context context, AttributeSet attr, List<KeyValue> items, boolean canDelete, int id, Consume consume){
 		super(context, attr);
 		/*保存自定义控件ID*/
 		controlID=id;
@@ -97,20 +98,35 @@ public class MyConsumeControl extends LinearLayout{
 				return false;
 			}
 		});
-		bind(context, items);
+		bind(context, items, consume);
 	}
 	/*绑定加载数据*/
-	private void bind(Context context, List<KeyValue> items){
-		
-		bindConsumeType(context, items);
+	private void bind(Context context, List<KeyValue> items, Consume consume){
+		if(consume!=null){//代表是修改
+			amountEditText.setText(String.valueOf(consume.getAmount()));
+			descriptionEditText.setText(consume.getDescription());
+			bindConsumeType(context, items, consume.getTypeID());
+		}else{
+			bindConsumeType(context, items, 0);
+		}
 	}
 	/*绑定消费类型*/
-	private void bindConsumeType(Context context, List<KeyValue> items){
-		adapter=new ArrayAdapter<KeyValue>(
-				context, 
-				android.R.layout.simple_spinner_item, 
-				items);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
-		typeSpinner.setAdapter(adapter);
+	private void bindConsumeType(Context context, List<KeyValue> items, int typeID){
+		if(items.size()>0){
+			int selectedPosition=0;
+			if(typeID!=0){//代表修改
+				for (KeyValue item : items) {
+					if(item.getKey()!=typeID){selectedPosition++;}
+					else{break;}
+				}
+			}
+			adapter=new ArrayAdapter<KeyValue>(
+					context, 
+					android.R.layout.simple_spinner_item, 
+					items);
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+			typeSpinner.setAdapter(adapter);
+			typeSpinner.setSelection(selectedPosition);
+		}
 	}
 }

@@ -73,7 +73,7 @@ public class DailyConsumeActivityOP extends Activity {
 			mYear=calendar.get(Calendar.YEAR);
 			mMonth=calendar.get(Calendar.MONTH);
 			mDay=calendar.get(Calendar.DAY_OF_MONTH);
-			addConsumeControl(false);//页面加载添加自定义消费控件
+			addConsumeControl(false, null);//页面加载添加自定义消费控件
 	    }else{//修改日常消费，获取修改的日期
 	    	id=bundle.getInt("id");
 	    	DailyConsume model=getDailyConsume(id);
@@ -83,6 +83,8 @@ public class DailyConsumeActivityOP extends Activity {
 		    	mYear=Integer.parseInt(dates[0]);
 		    	mMonth=Integer.parseInt(dates[1]);
 		    	mDay=Integer.parseInt(dates[2]);
+		    	bindConsumeControls(model.getConsumeList());
+		    	amountTextView.setText(String.valueOf(model.getAmount()));
 	    	}
 	    }
 	    //页面加载填充日期显示
@@ -106,18 +108,29 @@ public class DailyConsumeActivityOP extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				if(consumeLinearLayout.getChildCount()<items.size()){
-					addConsumeControl(true);
+					addConsumeControl(true, null);
 				}else{//所有的consume type被用完
 					BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.all_types_are_used);
 				}
 			}
 		});
 	}
-	
+	/*在修改时绑定ConsumeControls控件*/
+	private void bindConsumeControls(List<Consume> list){
+		if(list.size()>0){
+			for(int i=0; i<list.size(); i++){
+				if(i==0){//第一个ConsumeControl无法删除
+					addConsumeControl(false, list.get(i));
+				}else{//其余的ConsumeControl可以删除
+					addConsumeControl(true, list.get(i));
+				}
+			}
+		}
+	}
 	/*添加自定义消费控件*/
-	private void addConsumeControl(boolean canDelete){
+	private void addConsumeControl(boolean canDelete, Consume consume){
 		int lid=BaseMethod.convertCalendarToInt(Calendar.getInstance());
-		MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), canDelete, lid);
+		MyConsumeControl myConsumeControl=new MyConsumeControl(DailyConsumeActivityOP.this, null, getTheUnusedConsumeType(items), canDelete, lid, consume);
 		myConsumeControl.setId(lid);
 		myConsumeControl.setOnMyTypeTouchDownListener(iMyTypeTouchDown);
 		myConsumeControl.setOnMyDeleteListener(iMyDelete);
@@ -315,21 +328,21 @@ public class DailyConsumeActivityOP extends Activity {
 			}
 		}
 	}
-	/*根据日常消费编号获取日常消费*/
+	/*根据日常消费编号获取日常消费Info&Details*/
 	private DailyConsume getDailyConsume(int id){
 		DailyConsume item=new DailyConsume();
 		item.setDailyID(id);
 		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
-		DailyConsume model=dailyConsumeDAL.queryModel(item);
+		DailyConsume model=dailyConsumeDAL.queryDailyConsume(item, true);
 		dailyConsumeDAL.close();
 		return model;
 	}
-	/*根据日期获取日常消费*/
+	/*根据日期获取日常消费Info*/
 	private DailyConsume getDailyConsume(String date){
 		DailyConsume item=new DailyConsume();
 		item.setDate(date);
 		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
-		DailyConsume model=dailyConsumeDAL.queryModel(item);
+		DailyConsume model=dailyConsumeDAL.queryDailyConsume(item, false);
 		dailyConsumeDAL.close();
 		return model;
 	}
