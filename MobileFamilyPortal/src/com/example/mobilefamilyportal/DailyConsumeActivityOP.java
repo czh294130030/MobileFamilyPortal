@@ -76,12 +76,12 @@ public class DailyConsumeActivityOP extends Activity {
 			addConsumeControl(false, null);//页面加载添加自定义消费控件
 	    }else{//修改日常消费，获取修改的日期
 	    	id=bundle.getInt("id");
-	    	DailyConsume model=getDailyConsume(id);
+	    	DailyConsume model=getDailyConsume(id, true);
 	    	if(model!=null){
 		    	String date=model.getDate();
 		    	String[] dates=date.split("-");
 		    	mYear=Integer.parseInt(dates[0]);
-		    	mMonth=Integer.parseInt(dates[1]);
+		    	mMonth=Integer.parseInt(dates[1])-1;
 		    	mDay=Integer.parseInt(dates[2]);
 		    	bindConsumeControls(model.getConsumeList());
 		    	amountTextView.setText(String.valueOf(model.getAmount()));
@@ -297,7 +297,7 @@ public class DailyConsumeActivityOP extends Activity {
 			if(op==BaseField.ADD){//添加日常消费
 				addDailyConsume();
 			}else{//修改日常消费
-				updateDailyConsume();
+				updateDailyConsume(id);
 			}
 			break;
 		case BaseField.CANCEL:
@@ -314,7 +314,7 @@ public class DailyConsumeActivityOP extends Activity {
 		if(model!=null){//用户添加的数据无误
 			if(getDailyConsume(model.getDate())==null){//选择的日期未添加日常消费
 				DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
-				boolean flag=dailyConsumeDAL.addDailyConsume(model);
+				boolean flag=dailyConsumeDAL.add(model);
 				dailyConsumeDAL.close();
 				if(flag){
 					Intent intent=new Intent();
@@ -328,12 +328,36 @@ public class DailyConsumeActivityOP extends Activity {
 			}
 		}
 	}
+	/*修改日常消费*/
+	private void updateDailyConsume(int _id){
+		DailyConsume model=getDailyConsumeFromInput();
+		if(model!=null){//用户添加数据无误
+			DailyConsume item=getDailyConsume(_id, false);
+			if(!model.getDate().equals(item.getDate())){//用户在修改日常消费时修改了日期
+				if(getDailyConsume(model.getDate())!=null){//选择的日期已添加日常消费
+					BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.daily_consume_exsit);
+					return;
+				}
+			}
+			model.setDailyID(_id);
+			DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
+			boolean flag=dailyConsumeDAL.update(model);
+			dailyConsumeDAL.close();
+			if(flag){
+				Intent intent=new Intent();
+				setResult(BaseField.UPDATE_SUCCESSFULLY, intent);
+				this.finish();
+			}else{
+				BaseMethod.showInformation(DailyConsumeActivityOP.this, R.string.warm_prompt, R.string.add_unsuccessfully);
+			}
+		}
+	}
 	/*根据日常消费编号获取日常消费Info&Details*/
-	private DailyConsume getDailyConsume(int id){
+	private DailyConsume getDailyConsume(int id, boolean isNeedDetails){
 		DailyConsume item=new DailyConsume();
 		item.setDailyID(id);
 		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
-		DailyConsume model=dailyConsumeDAL.queryDailyConsume(item, true);
+		DailyConsume model=dailyConsumeDAL.queryModel(item, isNeedDetails);
 		dailyConsumeDAL.close();
 		return model;
 	}
@@ -342,14 +366,11 @@ public class DailyConsumeActivityOP extends Activity {
 		DailyConsume item=new DailyConsume();
 		item.setDate(date);
 		DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivityOP.this);
-		DailyConsume model=dailyConsumeDAL.queryDailyConsume(item, false);
+		DailyConsume model=dailyConsumeDAL.queryModel(item, false);
 		dailyConsumeDAL.close();
 		return model;
 	}
-	/*修改日常消费*/
-	private void updateDailyConsume(){
-		DailyConsume item=getDailyConsumeFromInput();
-	}
+	
 	/*获取用户输入的日常消费*/
 	private DailyConsume getDailyConsumeFromInput(){
 		if(validateDailyConsume()){

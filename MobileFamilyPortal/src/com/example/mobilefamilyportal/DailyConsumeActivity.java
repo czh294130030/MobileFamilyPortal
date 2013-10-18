@@ -3,9 +3,10 @@ package com.example.mobilefamilyportal;
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
 import com.example.dal.DailyConsumeDAL;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
@@ -182,12 +183,34 @@ public class DailyConsumeActivity extends Activity {
 			break;
 		}
 		case BaseField.DELETE:
-			/*deleteUserInfo(id);*/
+			deleteDailyConsume(id);
 			break;
 		default:
 			break;
 		}
 		return true;
+	}
+	/*删除日常消费Info&Details*/
+	private void deleteDailyConsume(int _id){
+		final int dailyID=_id;
+    	new AlertDialog.Builder(this)
+    	.setTitle(R.string.warm_prompt)
+    	.setIcon(R.drawable.alert_info)
+    	.setMessage(R.string.confirm_to_delete_dailyconsume)
+    	.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivity.this);
+				boolean result=dailyConsumeDAL.delete(dailyID);
+				dailyConsumeDAL.close();
+				if(result){
+					bind();
+				}else {
+					BaseMethod.showInformation(DailyConsumeActivity.this, R.string.warm_prompt, R.string.delete_unsuccessfully);
+				}
+			}
+		}).setNegativeButton(R.string.cancel, null)
+		.show();
 	}
 	/*当B Activity finish时触发获取resultCode和回传参数*/
     @Override    

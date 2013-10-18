@@ -39,7 +39,7 @@ public class BaseMethod {
 		return dateString;
 	}
 	/*获取当前月(October)*/
-	private static String convertMonth(int month){
+	/*private static String convertMonth(int month){
 		String monthString="";
 		switch (month) {
 		case 0:
@@ -82,7 +82,7 @@ public class BaseMethod {
 			break;
 		}
 		return monthString;
-	}
+	}*/
 	/*显示提示信息*/
 	public static void showInformation(Context context, int title, int message){
 		new AlertDialog.Builder(context)

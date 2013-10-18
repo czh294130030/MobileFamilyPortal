@@ -54,6 +54,7 @@
 	<string name="confirm_to_delete_userinfo">Confirm to delete user info?</string>
 	<string name="confirm_to_delete_bankcard">Confirm to delete bank card?</string>
 	<string name="confirm_to_delete_consume">Confirm to delete \'%1$s\'?</string>
+	<string name="confirm_to_delete_dailyconsume">Confirm to delete daily consume?</string>
 	<string name="module_build">This module is being build.</string>
 	<string name="unsave_changes">Unsaved changes will be lost.</string>
 	<string name="leave_login">Do you want to leave login page?</string>
