@@ -154,6 +154,7 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		if(!whereString.equals("")){
 			sqlString+=" "+whereString;
 		}
+		sqlString+=" ORDER BY date desc";
 		return db.rawQuery(sqlString, null);
 	}
 	/*根据条件获取日常消费的Info和Details*/

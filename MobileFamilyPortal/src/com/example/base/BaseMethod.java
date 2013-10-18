@@ -35,7 +35,17 @@ public class BaseMethod {
 	/*根据年，月，日获取当前日期(October 11, 2013)*/
 	public static String getCurrentDate(int year, int month, int day){
 		String dateString="";
-		dateString=year+"-"+(month+1)+"-"+day;
+		dateString=year+"-";
+		if((month+1)<10){
+			dateString+="0"+(month+1)+"-";
+		}else{
+			dateString+=(month+1)+"-";
+		}
+		if(day<10){
+			dateString+="0"+day;
+		}else{
+			dateString+=day;
+		}
 		return dateString;
 	}
 	/*获取当前月(October)*/
