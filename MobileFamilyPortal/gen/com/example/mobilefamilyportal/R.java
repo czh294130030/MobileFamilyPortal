@@ -68,13 +68,13 @@ public final class R {
         public static final int user=0x7f02001b;
     }
     public static final class id {
-        public static final int accountEditText=0x7f0a0018;
-        public static final int accountTextView=0x7f0a0028;
-        public static final int action_settings=0x7f0a002a;
+        public static final int accountEditText=0x7f0a0019;
+        public static final int accountTextView=0x7f0a002b;
+        public static final int action_settings=0x7f0a002d;
         public static final int addImageButton=0x7f0a0015;
-        public static final int amountEditText=0x7f0a0024;
+        public static final int amountEditText=0x7f0a0025;
         public static final int amountTextView=0x7f0a0014;
-        public static final int bankImageButton=0x7f0a001e;
+        public static final int bankImageButton=0x7f0a001f;
         public static final int bankcardListView=0x7f0a0005;
         public static final int calendarImageButton=0x7f0a0013;
         public static final int cardCitySpinner=0x7f0a0009;
@@ -87,30 +87,33 @@ public final class R {
         public static final int cardUserTextView=0x7f0a0010;
         public static final int clearImageButton=0x7f0a0002;
         public static final int consumeLinearLayout=0x7f0a0017;
-        public static final int dailyConsumeImageButton=0x7f0a001b;
+        public static final int dailyConsumeImageButton=0x7f0a001c;
         public static final int dailyconsumeListView=0x7f0a0011;
         public static final int dateEditText=0x7f0a0012;
-        public static final int dateTextView=0x7f0a0027;
-        public static final int deleteButton=0x7f0a0026;
-        public static final int descriptionEditText=0x7f0a0025;
+        public static final int dateTextView=0x7f0a0018;
+        public static final int deleteButton=0x7f0a0027;
+        public static final int descriptionEditText=0x7f0a0026;
+        public static final int descriptionTextView=0x7f0a002a;
         public static final int icoImageView=0x7f0a000c;
-        public static final int loginImageButton=0x7f0a001c;
-        public static final int passwordEditText=0x7f0a0019;
+        public static final int loginImageButton=0x7f0a001d;
+        public static final int passwordEditText=0x7f0a001a;
         public static final int scrollView1=0x7f0a0016;
         public static final int searchEditText=0x7f0a0001;
-        public static final int settingsImageButton=0x7f0a001f;
-        public static final int testLinearLayout=0x7f0a0020;
+        public static final int settingsImageButton=0x7f0a0020;
+        public static final int testLinearLayout=0x7f0a0021;
         public static final int textView1=0x7f0a0000;
         public static final int textView2=0x7f0a0004;
         public static final int textView3=0x7f0a0003;
         public static final int textView4=0x7f0a000a;
+        public static final int textView5=0x7f0a0029;
         public static final int titleTextView=0x7f0a0006;
-        public static final int typeSpinner=0x7f0a0023;
-        public static final int userInfoImageButton=0x7f0a001d;
-        public static final int userInfoListView=0x7f0a0021;
-        public static final int userNameTextView=0x7f0a0029;
-        public static final int usernameEditText=0x7f0a0022;
-        public static final int welcomeTextView=0x7f0a001a;
+        public static final int typeSpinner=0x7f0a0024;
+        public static final int typeTextView=0x7f0a0028;
+        public static final int userInfoImageButton=0x7f0a001e;
+        public static final int userInfoListView=0x7f0a0022;
+        public static final int userNameTextView=0x7f0a002c;
+        public static final int usernameEditText=0x7f0a0023;
+        public static final int welcomeTextView=0x7f0a001b;
     }
     public static final class layout {
         public static final int activity_bankcard=0x7f030000;
@@ -125,9 +128,10 @@ public final class R {
         public static final int activity_userinfo=0x7f030009;
         public static final int activity_userinfoop=0x7f03000a;
         public static final int control_consume=0x7f03000b;
-        public static final int list_bankcard=0x7f03000c;
-        public static final int list_dailyconsume=0x7f03000d;
-        public static final int list_userinfo=0x7f03000e;
+        public static final int control_consumeview=0x7f03000c;
+        public static final int list_bankcard=0x7f03000d;
+        public static final int list_dailyconsume=0x7f03000e;
+        public static final int list_userinfo=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f090000;

@@ -41,14 +41,14 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//if(BaseField.LOGIN_USER_ID!=0&&BaseField.LOGIN_USER_ID!=BaseField.ADMIN_USER_ID){/*登录用户是普通用户*/
+				if(BaseField.LOGIN_USER_ID!=0&&BaseField.LOGIN_USER_ID!=BaseField.ADMIN_USER_ID){/*登录用户是普通用户*/
 					Intent intent=new Intent(MainActivity.this, DailyConsumeActivity.class);
 					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(intent);
-				/*}
+				}
 				else{
 					BaseMethod.showInformation(MainActivity.this, R.string.warm_prompt, R.string.login_as_normal_user);
-				}*/
+				}
 			}
 		});
 		/*登录*/

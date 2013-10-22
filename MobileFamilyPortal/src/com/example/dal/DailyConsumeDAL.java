@@ -203,6 +203,7 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		if(dailyID!=0){
 			sql+=" and dailyID="+dailyID;
 		}
+		sql+=" ORDER BY typeID ASC";
 		Cursor cursor=db.rawQuery(sql, null);
 		if(cursor.getCount()>0)
 		{

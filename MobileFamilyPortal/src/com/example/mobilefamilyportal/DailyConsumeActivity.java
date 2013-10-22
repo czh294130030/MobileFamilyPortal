@@ -180,6 +180,11 @@ public class DailyConsumeActivity extends Activity {
     		startActivityForResult(intent, BaseField.EDIT_DAILY_CONSUME);
 			break;}
 		case BaseField.VIEW:{
+			Intent intent=new Intent(DailyConsumeActivity.this, DailyConsumeActivityView.class);
+			Bundle bundle=new Bundle();
+			bundle.putInt("id", id);
+			intent.putExtras(bundle);
+			startActivity(intent);
 			break;
 		}
 		case BaseField.DELETE:

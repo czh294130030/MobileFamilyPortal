@@ -45,6 +45,7 @@ public class DailyConsumeActivityOP extends Activity {
 	private ImageButton calendarImageButton=null;
 	private ImageButton addImageButton=null;
 	private LinearLayout consumeLinearLayout=null;
+	private TextView titleTextView=null;
 	private int mYear;
 	private int mMonth;
 	private int mDay;
@@ -54,6 +55,7 @@ public class DailyConsumeActivityOP extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_dailyconsumeop);
+	    titleTextView=(TextView)findViewById(R.id.titleTextView);
 	    calendarImageButton=(ImageButton)findViewById(R.id.calendarImageButton);
 	    calendarImageButton.setOnTouchListener(onMyOnTouchListener);
 	    addImageButton=(ImageButton)findViewById(R.id.addImageButton);
@@ -69,12 +71,14 @@ public class DailyConsumeActivityOP extends Activity {
 	    Bundle bundle=this.getIntent().getExtras();
 	    op=bundle.getInt("op");
 	    if(op==BaseField.ADD){//添加日常消费，获取当前日期
+	    	titleTextView.setText(R.string.add_daily_consume);
 	    	Calendar calendar=Calendar.getInstance();
 			mYear=calendar.get(Calendar.YEAR);
 			mMonth=calendar.get(Calendar.MONTH);
 			mDay=calendar.get(Calendar.DAY_OF_MONTH);
 			addConsumeControl(false, null);//页面加载添加自定义消费控件
 	    }else{//修改日常消费，获取修改的日期
+	    	titleTextView.setText(R.string.edit_daily_consume);
 	    	id=bundle.getInt("id");
 	    	DailyConsume model=getDailyConsume(id, true);
 	    	if(model!=null){

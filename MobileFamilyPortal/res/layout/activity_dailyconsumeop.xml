@@ -37,7 +37,7 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="100dp"
+            android:width="120dp"
             android:textSize="20sp"
             android:layout_marginLeft="22dp"
             android:layout_gravity="center"
@@ -46,7 +46,7 @@
             android:id="@+id/amountTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="80dp"
+            android:width="100dp"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:text="@string/zero" />

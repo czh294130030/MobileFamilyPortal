@@ -31,9 +31,9 @@
 	<string name="card_city">city</string>
 	<string name="card_user">user</string>
 	<string name="consume_type">type</string>
-	<string name="consume_amount">amount</string>
+	<string name="consume_amount">amount(￥)</string>
 	<string name="consume_description">description</string>
-	<string name="daily_consume_amount">amount</string>
+	<string name="daily_consume_amount">amount(￥)</string>
 	<string name="zero">0</string>
 	<string name="daily_consume_date">date</string>
 	<string name="warm_prompt">Warm prompt</string>
