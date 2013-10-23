@@ -53,19 +53,20 @@ public final class R {
         public static final int clear=0x7f02000c;
         public static final int dailyconsume=0x7f02000d;
         public static final int delete=0x7f02000e;
-        public static final int ic_launcher=0x7f02000f;
-        public static final int icbc=0x7f020010;
-        public static final int login=0x7f020011;
-        public static final int menu_add=0x7f020012;
-        public static final int menu_cancel=0x7f020013;
-        public static final int menu_delete=0x7f020014;
-        public static final int menu_edit=0x7f020015;
-        public static final int menu_ok=0x7f020016;
-        public static final int menu_view=0x7f020017;
-        public static final int other_banks=0x7f020018;
-        public static final int search=0x7f020019;
-        public static final int settings=0x7f02001a;
-        public static final int user=0x7f02001b;
+        public static final int fp_launcher=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int icbc=0x7f020011;
+        public static final int login=0x7f020012;
+        public static final int menu_add=0x7f020013;
+        public static final int menu_cancel=0x7f020014;
+        public static final int menu_delete=0x7f020015;
+        public static final int menu_edit=0x7f020016;
+        public static final int menu_ok=0x7f020017;
+        public static final int menu_view=0x7f020018;
+        public static final int other_banks=0x7f020019;
+        public static final int search=0x7f02001a;
+        public static final int settings=0x7f02001b;
+        public static final int user=0x7f02001c;
     }
     public static final class id {
         public static final int accountEditText=0x7f0a0019;
