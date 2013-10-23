@@ -53,7 +53,7 @@
             android:textSize="20sp"
             android:layout_marginLeft="8dp"
             android:textColor="@color/button_mouseover_color"
-            android:text="@string/card_type" />
+            android:text="@string/card_bank" />
         <TextView
             android:id="@+id/textView2"
             android:layout_width="fill_parent"

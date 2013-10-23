@@ -45,7 +45,7 @@
             android:width="120dp"
             android:textSize="20sp"
             android:layout_margin="10dp"
-            android:text="@string/card_type" />
+            android:text="@string/card_bank" />
 
         <Spinner
             android:id="@+id/cardTypeSpinner"

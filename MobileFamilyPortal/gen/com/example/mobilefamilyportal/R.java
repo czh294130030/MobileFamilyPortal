@@ -156,10 +156,10 @@ public final class R {
         public static final int bank_of_communications=0x7f07003e;
         public static final int bank_of_jiangsu=0x7f07003f;
         public static final int cancel=0x7f070016;
+        public static final int card_bank=0x7f07001b;
         public static final int card_city=0x7f07001c;
         public static final int card_no=0x7f07001a;
         public static final int card_no_required=0x7f070029;
-        public static final int card_type=0x7f07001b;
         public static final int card_user=0x7f07001d;
         public static final int china_citic_bank=0x7f070040;
         public static final int china_construction_bank=0x7f070041;

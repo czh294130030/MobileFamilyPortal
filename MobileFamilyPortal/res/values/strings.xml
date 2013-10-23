@@ -26,8 +26,8 @@
 	<string name="account">account</string>
 	<string name="user_name">user name</string>
 	<string name="password">password</string>
-	<string name="card_no">card no</string>
-	<string name="card_type">card type</string>
+	<string name="card_no">card no.</string>
+	<string name="card_bank">bank</string>
 	<string name="card_city">city</string>
 	<string name="card_user">user</string>
 	<string name="consume_type">type</string>
