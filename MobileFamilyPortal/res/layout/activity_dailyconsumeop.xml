@@ -24,8 +24,8 @@
         </EditText>
         <ImageButton
             android:id="@+id/calendarImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             style="@style/MenuStyle"
             android:src="@drawable/calendar" />
@@ -52,8 +52,8 @@
             android:text="@string/zero" />
         <ImageButton
             android:id="@+id/addImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             style="@style/MenuStyle"
             android:src="@drawable/add" />
     </LinearLayout>
