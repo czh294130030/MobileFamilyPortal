@@ -157,6 +157,24 @@ public class DailyConsumeDAL extends SQLiteOpenHelper {
 		sqlString+=" ORDER BY date desc";
 		return db.rawQuery(sqlString, null);
 	}
+	/*查找所有数据，返回List<DailyConsume>*/
+	public List<DailyConsume> queryDailyConsumes(String whereString, boolean isNeedDetails){
+		List<DailyConsume> list=new ArrayList<DailyConsume>();
+		Cursor cursor=query(whereString);
+		if(cursor.getCount()>0){
+			while(cursor.moveToNext()){
+				DailyConsume model=new DailyConsume();
+				model.setDailyID(cursor.getInt(cursor.getColumnIndex("_id")));
+				model.setAmount(cursor.getDouble(cursor.getColumnIndex("amount")));
+				model.setDate(cursor.getString(cursor.getColumnIndex("date")));
+				if(isNeedDetails){
+					model.setConsumeList(queryConsumes(model.getDailyID()));
+				}
+				list.add(model);
+			}
+		}
+		return list;
+	}
 	/*根据条件获取日常消费的Info和Details*/
 	public DailyConsume queryModel(DailyConsume item, boolean isNeedDetails){
 		DailyConsume model=queryDailyConsume(item);

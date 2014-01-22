@@ -1,16 +1,22 @@
 package com.example.mobilefamilyportal;
 
+import java.util.List;
 import com.example.base.BaseField;
 import com.example.base.BaseMethod;
+import com.example.base.SoapService;
 import com.example.dal.DailyConsumeDAL;
+import com.example.model.DailyConsume;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class DailyConsumeActivity extends Activity {
 
@@ -37,6 +44,7 @@ public class DailyConsumeActivity extends Activity {
 	private ListView dailyconsumeListView=null;
 	private Cursor cursor=null;
 	private SimpleCursorAdapter adapter=null;
+	private ProgressDialog syncProgressDialog=null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -129,6 +137,7 @@ public class DailyConsumeActivity extends Activity {
 		menu.add(0, BaseField.EDIT, 1, R.string.edit_item).setIcon(R.drawable.menu_edit);
 		menu.add(0, BaseField.DELETE, 2, R.string.delete_item).setIcon(R.drawable.menu_delete);
 		menu.add(0, BaseField.VIEW, 3, R.string.view_item).setIcon(R.drawable.menu_view);
+		menu.add(0, BaseField.SYNC, 4, R.string.sync_item).setIcon(R.drawable.menu_sync);
 		return true;
     }  
     /* 1. 当手机(Emulator)sdk版本>=11（如我的手机Android Version是4.1.1, Build.VERSION.SDK_INT是16） 
@@ -144,8 +153,10 @@ public class DailyConsumeActivity extends Activity {
 		menu.findItem(BaseField.EDIT).setVisible(false);
 		menu.findItem(BaseField.DELETE).setVisible(false);
 		menu.findItem(BaseField.VIEW).setVisible(false);
+		menu.findItem(BaseField.SYNC).setVisible(false);
 		if(isAdd){//添加
 			menu.findItem(BaseField.ADD).setVisible(true);
+			menu.findItem(BaseField.SYNC).setVisible(true);
 		}else{//删除,修改,查看
 			menu.findItem(BaseField.EDIT).setVisible(true);
 			menu.findItem(BaseField.DELETE).setVisible(true);
@@ -190,10 +201,51 @@ public class DailyConsumeActivity extends Activity {
 		case BaseField.DELETE:
 			deleteDailyConsume(id);
 			break;
+		case BaseField.SYNC:
+			syncDailyConsume();
+			break;
 		default:
 			break;
 		}
 		return true;
+	}
+	private Handler handler=new Handler(){    
+        public void handleMessage(Message msg){    
+            switch (msg.what) {    
+            case 0:    
+            	Toast.makeText(DailyConsumeActivity.this, R.string.sync_unsuccessfully, Toast.LENGTH_LONG).show();
+                break;
+            case 1:
+            	Toast.makeText(DailyConsumeActivity.this, R.string.sync_successfully, Toast.LENGTH_LONG).show();
+            	break;
+            default:    
+            	Toast.makeText(DailyConsumeActivity.this, R.string.sync_unsuccessfully, Toast.LENGTH_LONG).show();
+                break;    
+            }    
+            super.handleMessage(msg);    
+        }    
+    };
+	private Runnable myRunnable=new Runnable() {
+		@Override
+		public void run() {
+			/*同步数据*/
+			DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivity.this);
+			List<DailyConsume> list=dailyConsumeDAL.queryDailyConsumes("", true);
+			dailyConsumeDAL.close();
+			SoapService soapService=new SoapService();
+			boolean flag=soapService.syncDailyConsume(list, BaseField.SYNCDAILYCONSUME);
+			/*关闭ProgressDialog*/
+			syncProgressDialog.dismiss();
+			/*操作界面*/
+			Message msg=new Message();
+			msg.what=flag==true?1:0;
+			handler.sendMessage(msg);
+		}
+	};
+	/*和远程服务器同步dailyconsume*/
+	private void syncDailyConsume(){
+		syncProgressDialog=ProgressDialog.show(DailyConsumeActivity.this, BaseField.WARM_PROMPT, BaseField.SYNC_DAILYCONSUME, true);
+		new Thread(myRunnable).start();
 	}
 	/*删除日常消费Info&Details*/
 	private void deleteDailyConsume(int _id){

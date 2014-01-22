@@ -2,6 +2,9 @@ package com.example.model;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 public class DailyConsume {
 	
 	private int dailyID;
@@ -9,6 +12,30 @@ public class DailyConsume {
 	private String date;
 	private List<Consume> consumeList;
 	
+	/*将DailyConsume转化为Json方便在网络中传输*/
+	public static String ConvertToJson(List<DailyConsume> items){
+		String jsonString=""; 
+		if(items.size()>0){
+			try {
+				JSONArray jsonArray=new JSONArray();
+				for (DailyConsume item : items) {
+					JSONObject jsonObject=new JSONObject();
+					jsonObject.put("dailyID", item.getDailyID());
+					jsonObject.put("amount", item.getAmount());
+					jsonObject.put("date", item.getDate());
+					JSONArray consumeJsonArray=Consume.ConvertToJson(item.getConsumeList());
+					if(consumeJsonArray.length()>0){
+						jsonObject.put("consumeList", consumeJsonArray);
+					}
+					jsonArray.put(jsonObject);
+				}
+				jsonString=jsonArray.toString();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		return jsonString;
+	}
 	public int getDailyID() {
 		return dailyID;
 	}

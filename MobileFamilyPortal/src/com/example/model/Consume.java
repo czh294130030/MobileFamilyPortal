@@ -1,5 +1,10 @@
 package com.example.model;
 
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Consume {
 
 	private int consumeID;
@@ -8,6 +13,26 @@ public class Consume {
 	private int typeID;
 	private int dailyID;
 	
+	/*将Consume转化为Json方便在网络中传输*/
+	public static JSONArray ConvertToJson(List<Consume> items){
+		JSONArray jsonArray=new JSONArray();
+		if(items.size()>0){
+			try {
+				for (Consume item : items) {
+					JSONObject jsonObject=new JSONObject();
+					jsonObject.put("consumeID", item.getConsumeID());
+					jsonObject.put("description", item.getDescription());
+					jsonObject.put("amount", item.getAmount());
+					jsonObject.put("typeID", item.getTypeID());
+					jsonObject.put("dailyID", item.getDailyID());
+					jsonArray.put(jsonObject);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return jsonArray;
+	}
 	public int getConsumeID() {
 		return consumeID;
 	}

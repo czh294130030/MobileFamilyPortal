@@ -1,6 +1,19 @@
 package com.example.base;
 
 public class BaseField {
+	/* 和WCF ServiceContract中的Namespace一致 */
+	public static final String NAMESPACE="http://chad.cao";
+	/* WCF在iis中的调用路径(http://服务器/虚拟目录/服务) */
+    public static final String URL="http://172.16.18.74/Service1.svc";
+    /* Namespace/服务接口/方法  (这里的方法时是动态的)
+     * 如在http://chad.cao/IService1/后面添加方法HelloWorld
+     * 成http://chad.cao/IService1/HelloWorld*/
+    public static final String PART_SOAP_ACTION="http://chad.cao/IService1/";
+	/*WCF方法名*/
+	public static final String SYNCDAILYCONSUME="SyncDailyConsume";
+	/*访问WCF超时时间*/
+	public static final int TIME_OUT=30000;
+	
 	public static final String DATABASE_NAME = "MobileFamilyPortal";//数据库的名字
 	public static final String TABLE_NAME_USERINFO="UserInfo";//用户表
 	public static final String TABLE_NAME_PARAINFO="ParaInfo";//参数信息表
@@ -16,6 +29,7 @@ public class BaseField {
 	public static final int OK=3;
 	public static final int CANCEL=4;
 	public static final int VIEW=5;
+	public static final int SYNC=6;
 	/*requestCode*/
 	public static final int ADD_USERINFO=1001;
 	public static final int EDIT_USERINFO=2001;
@@ -51,4 +65,6 @@ public class BaseField {
 	public static final int CARD_CITY=2;
 	public static final int CONSUME_TYPE=3;
 	
+	public static final String WARM_PROMPT="Warm prompt";
+	public static final String SYNC_DAILYCONSUME="Sync daily consume to clouds.";
 }

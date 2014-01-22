@@ -9,6 +9,7 @@
 	<string name="edit_item">EDIT</string>
 	<string name="delete_item">DELETE</string>
 	<string name="view_item">VIEW</string>
+	<string name="sync_item">SYNC</string>
 	<string name="userinfo">USER INFORMATION</string>
 	<string name="bank_card_info">BANK CARD INFORMATION</string>
 	<string name="add_userinfo">ADD USER INFORMATION</string>
@@ -47,6 +48,8 @@
 	<string name="add_unsuccessfully">Failed to add.</string>
 	<string name="update_unsuccessfully">Failed to update.</string>
 	<string name="delete_unsuccessfully">Failed to delete.</string>
+	<string name="sync_successfully">Sync daily consume successfully.</string>
+	<string name="sync_unsuccessfully">Failed to sync.</string>
 	<string name="login_unsuccessfully">Login was unsuccessful. Please correct the errors and try again.</string>
 	<string name="account_has_been_used">Account has been used. Please select another. </string>
 	<string name="login_as_administrator">You have no authority. Please login as administrator.</string>
