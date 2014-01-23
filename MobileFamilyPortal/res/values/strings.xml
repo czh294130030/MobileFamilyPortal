@@ -49,6 +49,7 @@
 	<string name="update_unsuccessfully">Failed to update.</string>
 	<string name="delete_unsuccessfully">Failed to delete.</string>
 	<string name="sync_successfully">Sync daily consume successfully.</string>
+	<string name="sync_nodata">There is no data available.</string>
 	<string name="sync_unsuccessfully">Failed to sync.</string>
 	<string name="login_unsuccessfully">Login was unsuccessful. Please correct the errors and try again.</string>
 	<string name="account_has_been_used">Account has been used. Please select another. </string>

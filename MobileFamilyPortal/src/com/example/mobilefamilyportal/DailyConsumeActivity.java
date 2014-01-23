@@ -209,6 +209,11 @@ public class DailyConsumeActivity extends Activity {
 		}
 		return true;
 	}
+	/* Handler获取不同的指令进行不同的操作
+	 * 0代表同步数据失败
+	 * 1代表同步数据成功
+	 * 2代表无数据需要同步
+	 * */
 	private Handler handler=new Handler(){    
         public void handleMessage(Message msg){    
             switch (msg.what) {    
@@ -217,6 +222,9 @@ public class DailyConsumeActivity extends Activity {
                 break;
             case 1:
             	Toast.makeText(DailyConsumeActivity.this, R.string.sync_successfully, Toast.LENGTH_LONG).show();
+            	break;
+            case 2:
+            	Toast.makeText(DailyConsumeActivity.this, R.string.sync_nodata, Toast.LENGTH_LONG).show();
             	break;
             default:    
             	Toast.makeText(DailyConsumeActivity.this, R.string.sync_unsuccessfully, Toast.LENGTH_LONG).show();
@@ -228,17 +236,22 @@ public class DailyConsumeActivity extends Activity {
 	private Runnable myRunnable=new Runnable() {
 		@Override
 		public void run() {
-			/*同步数据*/
+			Message msg=new Message();
+			/*获取同步数据*/
 			DailyConsumeDAL dailyConsumeDAL=new DailyConsumeDAL(DailyConsumeActivity.this);
 			List<DailyConsume> list=dailyConsumeDAL.queryDailyConsumes("", true);
 			dailyConsumeDAL.close();
-			SoapService soapService=new SoapService();
-			boolean flag=soapService.syncDailyConsume(list, BaseField.SYNCDAILYCONSUME);
+			/*同步数据*/
+			if(list.size()>0){
+				SoapService soapService=new SoapService();
+				boolean flag=soapService.syncDailyConsume(list, BaseField.SYNCDAILYCONSUME);
+				msg.what=flag==true?1:0;
+			}else{
+				msg.what=2;
+			}
 			/*关闭ProgressDialog*/
 			syncProgressDialog.dismiss();
-			/*操作界面*/
-			Message msg=new Message();
-			msg.what=flag==true?1:0;
+			/*向Handler发送指令*/
 			handler.sendMessage(msg);
 		}
 	};
