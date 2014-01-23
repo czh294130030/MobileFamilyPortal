@@ -4,11 +4,11 @@ public class BaseField {
 	/* 和WCF ServiceContract中的Namespace一致 */
 	public static final String NAMESPACE="http://chad.cao";
 	/* WCF在iis中的调用路径(http://服务器/虚拟目录/服务) */
-    public static final String URL="http://172.16.18.74/Service1.svc";
+    public static final String URL="http://192.168.2.102/FamilyPortal-sl/MobileFamilyPortalService.svc";
     /* Namespace/服务接口/方法  (这里的方法时是动态的)
      * 如在http://chad.cao/IService1/后面添加方法HelloWorld
      * 成http://chad.cao/IService1/HelloWorld*/
-    public static final String PART_SOAP_ACTION="http://chad.cao/IService1/";
+    public static final String PART_SOAP_ACTION="http://chad.cao/IMobileFamilyPortalService/";
 	/*WCF方法名*/
 	public static final String SYNCDAILYCONSUME="SyncDailyConsume";
 	/*访问WCF超时时间*/
